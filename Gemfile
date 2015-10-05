@@ -37,14 +37,16 @@ gem 'spring',        group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
+gem 'thin'
 gem "haml-rails"
 gem "devise"
 gem "cancancan"
 gem "gritter", "~> 1.2.0" #https://github.com/RobinBrouwer/gritter
 gem "paperclip"
 gem 'activeadmin', github: 'activeadmin'
+gem "role_model"
 group :development do
   gem "meta_request"
   gem "awesome_print", require:"ap"
+  gem "erb2haml"
 end
