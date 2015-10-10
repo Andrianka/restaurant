@@ -6,7 +6,7 @@ gem 'rails', '4.1.8'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.3'
+# gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
@@ -45,6 +45,8 @@ gem "gritter", "~> 1.2.0" #https://github.com/RobinBrouwer/gritter
 gem "paperclip"
 gem 'activeadmin', github: 'activeadmin'
 gem "role_model"
+gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
+gem 'sass', ">= 3.4.18"
 group :development do
   gem "meta_request"
   gem "awesome_print", require:"ap"
