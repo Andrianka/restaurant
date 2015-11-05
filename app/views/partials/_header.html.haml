@@ -1,16 +1,30 @@
-%nav.navbar.navbar-light.bg-faded
-  %a.navbar-brand{:href => "#"} Navbar
-  %ul.nav.navbar-nav
-    %li.nav-item.active
-      %a.nav-link{:href => "#"}
-        Home
-        %span.sr-only (current)
-    %li.nav-item
-      %a.nav-link{:href => "#"} Features
-    %li.nav-item
-      %a.nav-link{:href => "#"} Pricing
-    %li.nav-item
-      %a.nav-link{:href => "#"} About
-  %form.form-inline.navbar-form.pull-right
-    %input.form-control{:placeholder => "Search", :type => "text"}/
-    %button.btn.btn-success-outline{:type => "submit"} Search
+%header
+  .container_12
+    .grid_12
+      .socials
+        %a{:href => "#"}
+        %a{:href => "#"}
+        %a{:href => "#"}
+        %a.last{:href => "#"}
+      %h1
+        %a{:href => "index.html"}
+          =image_tag "logo.png"
+      .menu_block
+        %nav#bt-menu.bt-menu
+          %a.bt-menu-trigger{:href => "#"}
+            %span Menu
+          %ul
+            %li.current.bt-icon
+              %a{:href => "#"} Home
+            %li.bt-icon
+              %a{:href => "#"} About
+            %li.bt-icon
+              %a{:href => "#"} Menu
+            %li.bt-icon
+              %a{:href => "#"} Blog
+            %li.bt-icon
+              %a{:href => "#"} Reservation
+            %li.bt-icon
+              %a{:href => "#"} Contacts
+        .clear
+      .clear
