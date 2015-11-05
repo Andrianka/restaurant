@@ -8,4 +8,7 @@ class User < ActiveRecord::Base
   include RoleModel
   roles_attribute :roles_mask
   roles :manager, :client, :cook, :waiter, :boss
+  has_many :orders
+  has_many :reservations
+
 end
