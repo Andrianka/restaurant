@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
   root 'home#index'
 
-  get 'catalog/:catalog_id/products/' => 'products#menu', as: "menu"
+  get 'products/' => 'products#menu', as: "menu"
 
   resources :products, except: [:edit, :index]
   resources :categories, except: [:edit]

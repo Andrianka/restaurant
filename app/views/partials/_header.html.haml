@@ -7,7 +7,7 @@
         %a{:href => "#"}
         %a.last{:href => "#"}
       %h1
-        %a{:href => "index.html"}
+        %a{:href => root_path}
           =image_tag "logo.png"
       .menu_block
         %nav#bt-menu.bt-menu
@@ -15,15 +15,13 @@
             %span Menu
           %ul
             %li.current.bt-icon
-              %a{:href => "#"} Home
+              %a{:href => root_path} Home
             %li.bt-icon
               %a{:href => "#"} About
             %li.bt-icon
-              %a{:href => "#"} Menu
+              %a{:href => menu_path} Menu
             %li.bt-icon
-              %a{:href => "#"} Blog
-            %li.bt-icon
-              %a{:href => "#"} Reservation
+              %a{:href => new_reservation_path} Reservation
             %li.bt-icon
               %a{:href => "#"} Contacts
         .clear

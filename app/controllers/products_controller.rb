@@ -1,8 +1,7 @@
 class ProductsController < ApplicationController
 
   def menu
-    @category = Category.find(params[:category_id])
-    @menu = @category.products
+    @menu = Product.all
   end
 
   def new
