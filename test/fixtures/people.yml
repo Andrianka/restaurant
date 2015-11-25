@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  roles_mask: 1
+  first_name: MyString
+  last_name: MyString
+  avatar: MyString
+  tel: MyString
+
+two:
+  roles_mask: 1
+  first_name: MyString
+  last_name: MyString
+  avatar: MyString
+  tel: MyString

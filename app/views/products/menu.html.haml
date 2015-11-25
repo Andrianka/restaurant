@@ -1,0 +1,8 @@
+-@categories.each do |c|
+  =c.name
+  %p
+    -c.products.each do |p|
+      = p.name
+      = p.description
+      = p.weight
+      = p.quantity

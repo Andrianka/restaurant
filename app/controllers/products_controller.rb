@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 
   def menu
-    @menu = Product.all
+    @categories = Category.order(order_number: :asc)
   end
 
   def new

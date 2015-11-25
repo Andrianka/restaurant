@@ -1,0 +1,14 @@
+%h1 Listing tables
+%table
+  %thead
+    %tr
+      %th Places
+      %th{:colspan => "2"}
+  %tbody
+    - @tables.each do |table|
+      %tr
+        %td= table.nr
+        %td= link_to 'Show', table
+        %td= link_to 'Destroy', table, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New Table', new_table_path

@@ -1,0 +1,20 @@
+.content
+  %h1 Listing tables
+  %table
+    %thead
+      %tr
+        %th User
+        %th Table
+        %th Order
+        %th Created at
+        %th{:colspan => "2"}
+    %tbody
+      -@reservations.each do |reservation|
+        %tr
+          %td= reservation.user.email
+          %td= reservation.table_id
+          -if reservation.order
+            %td= link_to reservation.order_id, order_path(order_id)
+          %td= reservation.created_at
+          %td= link_to 'Show', reservation_path(reservation)
+          %td= link_to 'Destroy', reservation_path(reservation), method: :delete, data: { confirm: 'Are you sure?' }

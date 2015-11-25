@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151018164203) do
+ActiveRecord::Schema.define(version: 20151125174451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20151018164203) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "order_number"
   end
 
   create_table "order_items", force: true do |t|
@@ -66,6 +67,16 @@ ActiveRecord::Schema.define(version: 20151018164203) do
   create_table "orders", force: true do |t|
     t.integer  "user_id"
     t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "people", force: true do |t|
+    t.integer  "roles_mask"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "avatar"
+    t.string   "tel"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -86,6 +97,7 @@ ActiveRecord::Schema.define(version: 20151018164203) do
     t.integer  "order_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "release_at"
   end
 
   create_table "tables", force: true do |t|
@@ -108,7 +120,6 @@ ActiveRecord::Schema.define(version: 20151018164203) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.integer  "roles_mask"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
