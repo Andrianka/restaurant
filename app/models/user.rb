@@ -8,4 +8,6 @@ class User < ActiveRecord::Base
   has_many :reservations
   has_one  :person
 
+  accepts_nested_attributes_for :person
+  validates :person, presence: true
 end

@@ -5,12 +5,12 @@ Rails.application.routes.draw do
   root 'home#index'
 
   get 'menu/' => 'products#menu', as: "menu"
-
+  get 'profile' => 'users#profile', as: "profile"
   resources :products, except: [:edit, :index]
   resources :categories, except: [:edit]
   resources :orders, except: [:destroy, :edit]
   resources :reservations, except: [:edit]
   resources :tables, except: [:edit]
-  resources :users, only: [:index, :show]
+  resources :users, except: [:edit]
 
 end

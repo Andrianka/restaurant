@@ -6,7 +6,8 @@ class CreatePeople < ActiveRecord::Migration
       t.string :last_name
       t.string :avatar
       t.string :tel
-
+      t.integer :user_id
+      
       t.timestamps
     end
   end

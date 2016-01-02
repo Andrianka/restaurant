@@ -1,8 +1,23 @@
--@categories.each do |c|
-  =c.name
-  %p
-    -c.products.each do |p|
-      = p.name
-      = p.description
-      = p.weight
-      = p.quantity
+.content
+  %h1 Listing category
+  -@categories.each do |category|
+    =category.name
+    %table.table
+      %thead
+        %tr
+          %th Name
+          %th Description
+          %th Weight
+          %th Quantity
+          %th Created at
+          %th{:colspan => "2"}
+      %tbody
+        -category.products.each do |p|
+          %tr
+            %td= p.name
+            %td= p.description
+            %td= p.weight
+            %td= p.quantity
+            %td= category.created_at
+            %td= link_to 'Show', category_path(category)
+            %td= link_to 'Destroy', category_path(category), method: :delete, data: { confirm: 'Are you sure?' }
