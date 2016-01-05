@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.8'
+gem 'rails', '4.2.5'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -47,6 +47,7 @@ gem 'activeadmin', github: 'activeadmin'
 gem "role_model"
 gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
 gem 'sass', ">= 3.4.18"
+gem "figaro"
 group :development do
   gem "meta_request"
   gem "awesome_print", require:"ap"

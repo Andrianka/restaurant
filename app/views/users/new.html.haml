@@ -1,2 +1,3 @@
-.content
-  = render partial: 'users/form'
+-if can? :create, User
+  .content
+    = render partial: 'users/form'

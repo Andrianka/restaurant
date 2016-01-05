@@ -14,4 +14,6 @@
 //= require jquery_ujs
 //= require gritter
 //= require bootstrap
+//= require bootstrap-datetimepicker.min.js
+//= require datetime-picker
 //= require_tree .

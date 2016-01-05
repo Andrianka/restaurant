@@ -7,7 +7,6 @@ class Person < ActiveRecord::Base
 
   roles_attribute :roles_mask
   roles :manager, :client, :cook, :waiter, :boss
-
-  validates :roles, presence: true
-
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 end

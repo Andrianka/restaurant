@@ -3,7 +3,7 @@ class Ability
 
   def initialize(user)
     user ||= User.new
-    access_abilities(user)
+    access_abilities(user.person)
   end
 
   def access_abilities(user)
@@ -19,7 +19,9 @@ class Ability
     if user.has_role?  :cook
     end
     if user.has_role?  :manager
-      can :manage, :all
+      # can :manage, :all
+      can :access, [User]
+      can :access, :action_index_user
     end
     if user.has_role?  :boss
       can :manage, :all
