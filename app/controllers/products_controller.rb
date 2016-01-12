@@ -2,6 +2,8 @@ class ProductsController < ApplicationController
 
   def menu
     @categories = Category.order(order_number: :asc)
+    @products = Product.all
+    @order_item = current_order.order_items.new
   end
 
   def new

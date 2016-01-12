@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'carts/show'
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users, controllers: {registrations: 'registrations'}
@@ -9,8 +11,10 @@ Rails.application.routes.draw do
   resources :products, except: [:edit, :index]
   resources :categories, except: [:edit]
   resources :orders, except: [:destroy, :edit]
+  resources :order_items, only: [:create, :update, :destroy]
   resources :reservations, except: [:edit]
   resources :tables, except: [:edit]
   resources :users, except: [:edit]
+  resource :cart, only: [:show]
 
 end

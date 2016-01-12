@@ -7,7 +7,8 @@ class Order < ActiveRecord::Base
   validates :user, presence: true
   validates :status, presence: true
 
-  attr_accessor :sum
+  before_create :set_order_status
+  before_save :update_subtotal
 
   Statuses = [
             Reservation = "Reservation",
@@ -17,12 +18,16 @@ class Order < ActiveRecord::Base
             Payed = "Payed",
             Closed = "Closed"
             ]
+  def set_subtotal
+    self.order_items.collect { |oi| oi.valid? ? (oi.quantity * oi.unit_price) : 0 }.sum
+  end
 
-  def sum_price
-    sum = 0
-    self.order_items.map {
-      |i| sum_price += i.price
-    }
-    return sum
+  private
+  def set_order_status
+    self.status = Order::InProgress
+  end
+
+  def update_subtotal
+    self.subtotal = self.set_subtotal
   end
 end

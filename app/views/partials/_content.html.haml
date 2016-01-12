@@ -1,2 +1,8 @@
 .content
-  = yield
+  .container_12
+    .row
+      .col-xs-6
+        %h1= link_to "My Store", root_path
+      .col-xs-6.text-right
+        %h1.cart-text= render 'layouts/cart_text'
+    = yield

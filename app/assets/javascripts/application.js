@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require gritter
+//= require tether
+//= require bootstrap-sprockets
 //= require bootstrap
 //= require bootstrap-datetimepicker.min.js
 //= require datetime-picker

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160103200407) do
+ActiveRecord::Schema.define(version: 20160112192954) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,8 @@ ActiveRecord::Schema.define(version: 20160103200407) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "order_number"
+    t.string   "title"
+    t.text     "description"
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -61,8 +63,9 @@ ActiveRecord::Schema.define(version: 20160103200407) do
     t.integer  "product_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "quantity",                           default: 1
-    t.decimal  "price",      precision: 8, scale: 2
+    t.integer  "quantity",                             default: 1
+    t.decimal  "total_price", precision: 12, scale: 3
+    t.decimal  "unit_price",  precision: 12, scale: 3
   end
 
   create_table "orders", force: :cascade do |t|
@@ -70,6 +73,10 @@ ActiveRecord::Schema.define(version: 20160103200407) do
     t.string   "status",     limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "subtotal",               precision: 12, scale: 3
+    t.decimal  "tax",                    precision: 12, scale: 3
+    t.decimal  "shipping",               precision: 12, scale: 3
+    t.decimal  "total",                  precision: 12, scale: 3
   end
 
   create_table "people", force: :cascade do |t|
@@ -87,13 +94,19 @@ ActiveRecord::Schema.define(version: 20160103200407) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.string   "name",        limit: 255
+    t.string   "name",               limit: 255
     t.text     "description"
     t.decimal  "weight"
-    t.integer  "quantity",                default: 0
+    t.integer  "quantity",                                               default: 0
     t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.decimal  "price",                          precision: 8, scale: 2
+    t.boolean  "is_active",                                              default: true
   end
 
   create_table "reservations", force: :cascade do |t|
