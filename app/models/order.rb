@@ -18,7 +18,7 @@ class Order < ActiveRecord::Base
             Payed = "Payed",
             Closed = "Closed"
             ]
-  def set_subtotal
+  def subtotal
     self.order_items.collect { |oi| oi.valid? ? (oi.quantity * oi.unit_price) : 0 }.sum
   end
 
@@ -28,6 +28,6 @@ class Order < ActiveRecord::Base
   end
 
   def update_subtotal
-    self.subtotal = self.set_subtotal
+    self[:subtotal] = subtotal
   end
 end

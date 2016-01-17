@@ -1,5 +1,4 @@
 class OrderItemsController < ApplicationController
-  # before_action :authenticate_user!
 
   def create
     if current_user
@@ -7,8 +6,12 @@ class OrderItemsController < ApplicationController
       @order.user_id = current_user.id
       @order.status = Order::InProgress
       @order.save
-      @order_item = @order.order_items.new(order_item_params)
-      @order_item.save
+      @order_item = @order.order_items.find_by(product_id: params[:order_item][:product_id])
+      if @order_item.nil?
+        @order_item = @order.order_items.create(order_item_params)
+      else
+        @order_item.update_attributes(order_item_params)
+      end
       session[:order_id] = @order.id
     else
       respond_to do |format|

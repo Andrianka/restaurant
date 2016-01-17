@@ -3,7 +3,12 @@ class ProductsController < ApplicationController
   def menu
     @categories = Category.order(order_number: :asc)
     @products = Product.all
-    @order_item = current_order.order_items.new
+    if current_order
+      @order_item = current_order.order_items
+    else
+      current_order = Order.new
+      @order_item = current_order.order_items.new
+    end
   end
 
   def new

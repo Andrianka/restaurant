@@ -9,8 +9,9 @@ class ApplicationController < ActionController::Base
   helper_method :current_order
 
    def current_order
-     if !session[:order_id].nil?
-       Order.find_by(id: session[:order_id])  
+     order = Order.find_by(id: session[:order_id])
+     if !session[:order_id].nil? && order
+       order
      else
        Order.new
      end
