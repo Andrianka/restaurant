@@ -18,13 +18,16 @@ class Order < ActiveRecord::Base
             Payed = "Payed",
             Closed = "Closed"
             ]
+
+  scope :draft, -> { where.not(status: Order::New)}
+  
   def subtotal
     self.order_items.collect { |oi| oi.valid? ? (oi.quantity * oi.unit_price) : 0 }.sum
   end
 
   private
   def set_order_status
-    self.status = Order::InProgress
+    self.status = Order::New
   end
 
   def update_subtotal

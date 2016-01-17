@@ -18,13 +18,13 @@
             %li.current.bt-icon
               %a{:href => root_path} Home
             %li.bt-icon
-              %a{:href => menu_path} Menu
+              =link_to "Menu", menu_path
             %li.bt-icon
-              %a{:href => "#"} About
+              = link_to "About", about_path
             %li.bt-icon
-              %a{:href => new_reservation_path} Reservation
+              =link_to "Reservation", new_reservation_path
             %li.bt-icon
-              %a{:href => "#"} Contacts
+              = link_to "Contacts", contact_path
 
         .clear
       .clear

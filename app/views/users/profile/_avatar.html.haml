@@ -1,0 +1,8 @@
+%p
+  = image_tag @user.person.avatar.url(:medium)
+
+=form_for @user, url: upload_avatar_path, html: { multipart: true } do |f|
+  =f.fields_for :person do |p|
+    .form-group.row
+      =p.file_field :avatar
+  = f.submit 'Upload',  class: 'btn btn-info'

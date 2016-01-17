@@ -3,7 +3,11 @@ class Reservation < ActiveRecord::Base
   belongs_to :user
   belongs_to :order
 
+  Statuses = [New = 'New', Accepted = 'Accepted', Declined = 'Declined']
 
+  scope :declined, -> { where(status: Reservation::Declined)}
+  scope :active, -> { where.not(status: Reservation::Declined)}
+  
   scope :finished, -> {where('release_at < ?', DateTime.now)}
   scope :today, -> {where('release_at.to_date = ?', DateTime.now.to_date)}
   scope :today_finished,

@@ -1,0 +1,11 @@
+%table.table
+  %thead
+    %th Date
+    %th Status
+  %tbody
+    -@orders.each do |o|
+      %tr
+        %th
+          = link_to o.created_at, user_order_path(o.id)
+        %th
+          = o.status

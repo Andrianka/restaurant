@@ -1,0 +1,64 @@
+.content.contact
+  .container_12
+    .grid_12
+      -# #map
+    .clear
+    .grid_4
+      %h3.head3 Address
+      .map
+        %address
+          %dl
+            %dt
+              The Company Name Inc.
+              %br/
+              8901 Marmora Road,
+              %br/
+              Glasgow, D04 89GR.
+            %dd
+              %span> Freephone:
+              +1 800 559 6580
+            %dd
+              %span> Telephone:
+              +1 800 603 6035
+            %dd
+              %span> FAX:
+              +1 800 889 9898
+            %dd
+              E-mail:
+              %a.col2{:href => "#"} mail@demolink.org
+            %dd
+              Skype:
+              %a.col2{:href => "#"} @skypename
+        %p
+          We’re glad to provide support services for all
+          %a.col2{:href => "http://www.templatemonster.com/website-templates.php", :rel => "nofollow"} premium designs
+          that we produce. The goodies that are available for free (free templates) go without support.
+        If you’re looking for some professionals to help you polish the chosen free theme, address to
+        %a.col2{:href => "http://www.templatetuning.com/", :rel => "nofollow"} Template Tuning
+        guys for help. Please note that it’s a paid service.
+    .grid_8
+      %h3.head3 Contact Form
+      %form#form
+        .success_wrapper
+          .success-message Contact form submitted
+        %label.name
+          %input{"data-constraints" => "@Required @JustLetters", :placeholder => "Name:", :type => "text"}/
+          %span.empty-message *This field is required.
+          %span.error-message *This is not a valid name.
+        %label.email
+          %input{"data-constraints" => "@Required @Email", :placeholder => "E-mail:", :type => "text"}/
+          %span.empty-message *This field is required.
+          %span.error-message *This is not a valid email.
+        %label.phone
+          %input{"data-constraints" => "@Required @JustNumbers", :placeholder => "Phone:", :type => "text"}/
+          %span.empty-message *This field is required.
+          %span.error-message *This is not a valid phone.
+        %label.message
+          %textarea{"data-constraints" => "@Required @Length(min=20,max=999999)", :placeholder => "Message:"}
+          %span.empty-message *This field is required.
+          %span.error-message *The message is too short.
+        %div
+          .clear
+          .btns
+            %a.btn{"data-type" => "reset", :href => "#"} Clear
+            %a.btn{"data-type" => "submit", :href => "#"} Send

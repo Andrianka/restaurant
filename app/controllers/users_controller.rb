@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  
+
   def index
     @users = User.all
   end
@@ -34,18 +34,25 @@ class UsersController < ApplicationController
   end
 
   def profile
-    @user = User.find(params[:id])
-    @user.build_person(person_params)
+    @user = current_user
+    @user.build_person
+    @orders = @user.orders.draft
+    @reservations = @user.reservations.active
+  end
+
+  def upload_avatar
+    current_user.person.update_attributes(params[:person])
+    redirect_to profile_path(tab: 'avatar')
   end
 
   private
 
   def user_params
-    params.require(:user).permit(person_attributes: [:id, :first_name,
+    params.require(:user).permit(:email, person_attributes: [:id, :first_name,
       :last_name, :tel, :roles, :user_id])
   end
 
-  # def person_params
-  #   params.require(:person).permit(:roles, :user_id)
-  # end
+  def person_params
+    params.require(:person).permit(:roles, :user_id, :first_name)
+  end
 end

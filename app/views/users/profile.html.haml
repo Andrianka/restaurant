@@ -1,0 +1,35 @@
+.content
+  .container_12
+    .card.card-block
+      .container_12
+        %h4.card-title My profile
+        .card-text
+          .grid_3
+            %ul.nav.nav-pills.nav-stacked.margin-bottom-10{:style=>"border-bottom:0"}
+              %li.col-md-12.nav-item
+                %a.nav-link{:class => params[:tab].blank? ? 'active' : '', :data => {:toggle =>"pill"}, :href => "#tab_1"}
+                  %span.glyphicon.glyphicon-user
+                  Personal Information
+              %li.col-md-12.nav-item
+                %a.nav-link{:class => params[:tab] == 'avatar' ? 'active' : '', :data => {:toggle =>"pill"}, :href => "#tab_2"}
+                  %span.glyphicon.glyphicon-picture
+                  Avatar
+              %li.col-md-12.nav-item
+                %a.nav-link{:class => params[:tab] == 'orders' ? 'active' : '', :data => {:toggle =>"pill"}, :href => "#tab_3"}
+                  %span.glyphicon.glyphicon-tasks
+                  My Last Orders
+              %li.col-md-12.nav-item
+                %a.nav-link{:class => params[:tab] == 'reservations' ? 'active' : '', :data => {:toggle =>"pill"}, :href => "#tab_4"}
+                  %span.glyphicon.glyphicon-tasks
+                  My Reservations
+
+          .grid_9.pull-left
+            .tab-content{style: 'margin-left: 100px'}
+              %div{:class=> "tab-pane #{params[:tab].blank? ? 'active' : ''}",:id => "tab_1"}
+                = render :partial => 'users/profile/personal_info'
+              %div{:class=> "tab-pane #{params[:tab] == 'avatar' ? 'active' : ''}",:id => "tab_2"}
+                = render :partial => 'users/profile/avatar'
+              %div{:class=> "tab-pane #{params[:tab] == 'orders' ? 'active' : ''}",:id => "tab_3"}
+                = render :partial => 'users/profile/orders'
+              %div{:class=> "tab-pane #{params[:tab] == 'reservations' ? 'active' : ''}",:id => "tab_4"}
+                = render :partial => 'users/profile/reservations'

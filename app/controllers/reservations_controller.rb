@@ -15,6 +15,7 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
     @reservation.user = current_user if current_user
+    @reservation.status = Reservation::New
     if @reservation.save
       redirect_to reservation_path(@reservation)
     else
@@ -38,9 +39,17 @@ class ReservationsController < ApplicationController
     end
   end
 
+  def change_status_declined
+    @reservation = Reservation.find(params[:id])
+    @reservation.status = Reservation::Declined
+    @reservation.save
+    redirect_to profile_path(tab: 'reservations')
+  end
+
   private
 
   def reservation_params
-    params.require(:reservation).permit(:table_id, :order_id, :release_at, :user_id)
+    params.require(:reservation).permit(:table_id, :order_id, :release_at,
+    :user_id, :s)
   end
 end

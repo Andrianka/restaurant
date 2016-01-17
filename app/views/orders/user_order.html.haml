@@ -1,0 +1,24 @@
+.container_12
+  .card.card-block
+    .card-title
+      %h4= "#{@order.id}-#{@order.created_at.strftime("%d/%m/%Y")} - #{@order.status}"
+    .card-text
+      %table.table
+        %thead
+          %th Product
+          %th Quantity
+          %th Unit price
+          %th Total price
+        %tbody
+          -@order_items.each do |item|
+            %tr
+              %th
+                = item.product.name
+              %th
+                = item.quantity
+              %th
+                = number_to_currency item.unit_price
+              %th
+                = number_to_currency item.total_price
+      %b.pull-right{style: 'margin-right: 110px'}= "Sum: #{number_to_currency @order.subtotal}"
+    = link_to "Back to all orders", profile_path(tab: 'orders'), class: 'btn btn-info'

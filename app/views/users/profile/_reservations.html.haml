@@ -1,0 +1,20 @@
+%table.table
+  %thead
+    %th Table
+    %th Order
+    %th Date
+    %th Status
+    %th Actions
+  %tbody
+    -@reservations.each do |r|
+      %tr
+        %th
+          = r.table_id
+        %th
+          = link_to "Order", user_order_path(r.order_id) if r.order.present?
+        %th
+          = r.release_at.strftime("%d-%m-%Y %H:%M")
+        %th
+          = r.status
+        %th
+          = link_to 'Decline', declined_reservation_path(r.id), method: :put
