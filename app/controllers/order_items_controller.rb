@@ -1,12 +1,20 @@
 class OrderItemsController < ApplicationController
+  # before_action :authenticate_user!
+
   def create
-    @order = current_order
-    @order.user_id = current_user.id
-    @order.status = Order::InProgress
-    @order.save
-    @order_item = @order.order_items.new(order_item_params)
-    @order_item.save
-    session[:order_id] = @order.id
+    if current_user
+      @order = current_order
+      @order.user_id = current_user.id
+      @order.status = Order::InProgress
+      @order.save
+      @order_item = @order.order_items.new(order_item_params)
+      @order_item.save
+      session[:order_id] = @order.id
+    else
+      respond_to do |format|
+        format.js {render text: "window.location = '/users/sign_in';"}
+      end
+    end
   end
 
   def update

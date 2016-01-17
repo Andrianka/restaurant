@@ -38,6 +38,7 @@ gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
 gem 'sass', ">= 3.4.18"
 gem "figaro"
 gem "pry"
+gem 'faker'
 group :development do
   gem "meta_request"
   gem "awesome_print", require:"ap"

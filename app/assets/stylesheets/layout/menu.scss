@@ -11,7 +11,11 @@ nav.bt-menu  ul li {
 	color: #fff;
 }
 nav.bt-menu  ul li:first-child+li+li {
-	margin-right: 120px;
+	padding-right: 150px;
+}
+
+nav.bt-menu  ul li:first-child+li+li+li {
+	padding-left: 0px;
 }
 
 .bt-overlay {
@@ -125,22 +129,27 @@ nav.bt-menu  ul li a:hover, nav ul li.current  {
 
 .bt-menu.bt-menu-open ul li:first-child,
 .bt-menu.bt-menu-open ul li:last-child {
-	-webkit-transition-delay: 0.2s;
-	transition-delay: 0.2s;
+	-webkit-transition-delay: 0.25s;
+	transition-delay: 0.25s;
 }
 
 .bt-menu.bt-menu-open ul li:nth-child(2),
 .bt-menu.bt-menu-open ul li:nth-last-child(2) {
-	-webkit-transition-delay: 0.15s;
-	transition-delay: 0.15s;
+	-webkit-transition-delay: 0.2s;
+	transition-delay: 0.2s;
 }
 
 .bt-menu.bt-menu-open ul li:nth-child(3),
 .bt-menu.bt-menu-open ul li:nth-last-child(3) {
+	-webkit-transition-delay: 0.15s;
+	transition-delay: 0.15s;
+}
+
+.bt-menu.bt-menu-open ul li:nth-child(4),
+.bt-menu.bt-menu-open ul li:nth-last-child(4) {
 	-webkit-transition-delay: 0.1s;
 	transition-delay: 0.1s;
 }
-
 
 .bt-menu-open .bt-menu-trigger span:before {
 	-webkit-transform: translateY(-175%);
@@ -182,7 +191,8 @@ nav.bt-menu  ul li a:hover, nav ul li.current  {
 
 .bt-menu ul li {
 	display: inline-block;
-	margin: 0 21px;
+	// margin: 0 21px;
+	padding: 0 20px;
 	opacity: 0;
 	-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
 	transition: transform 0.3s, opacity 0.3s;

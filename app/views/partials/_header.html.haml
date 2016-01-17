@@ -1,4 +1,5 @@
 %header
+  = render partial: 'partials/devise_links'
   .container_12
     .grid_12
       .socials
@@ -17,12 +18,16 @@
             %li.current.bt-icon
               %a{:href => root_path} Home
             %li.bt-icon
-              %a{:href => "#"} About
-            %li.bt-icon
               %a{:href => menu_path} Menu
+            %li.bt-icon
+              %a{:href => "#"} About
             %li.bt-icon
               %a{:href => new_reservation_path} Reservation
             %li.bt-icon
               %a{:href => "#"} Contacts
+
         .clear
       .clear
+      .center.store
+        = link_to "My Store", root_path
+        .cart-text= render 'layouts/cart_text'

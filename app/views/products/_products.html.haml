@@ -6,10 +6,10 @@
           =link_to "#", class: "gal" do
             =image_tag p.image.url(:medium), class: "col3"
             %span
-          .col2
-            %span.col3
-              =link_to  p.name, product_path(p.id)
-            = number_to_currency(p.price)
-            = f.number_field :quantity, value: 1, class: "form-control", min: 1
+          .col5
+            %span.col4{style: 'min-height: 40px'}
+              =link_to p.name, product_path(p.id), class: 'price_link'
+              %p= number_to_currency(p.price)
+            .col-lg-4.col-lg-offset-3= f.number_field :quantity, value: 1, class: "form-control", style:'width: 54px', min: 1
             = f.hidden_field :product_id, value: p.id
             = f.submit "Add to Cart", class: "btn btn-primary"

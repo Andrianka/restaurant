@@ -35,6 +35,7 @@ body {
 	background-color: #d7d7b1;
 	position:relative;
 	min-width:960px;
+	box-sizing: initial;
 }
 
 .ic {
@@ -297,6 +298,9 @@ h1 a img {
 	opacity: 0.5;
 }
 
+.store{
+	margin-top: 10px;
+}
 /*Content*/
 
 
@@ -305,7 +309,7 @@ h1 a img {
 	padding-bottom: 113px;
 }
 
-.page1 .content {
+.content {
 	padding-top: 4px;
 	padding-bottom: 105px;
 

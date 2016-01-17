@@ -17,12 +17,12 @@ ActiveRecord::Schema.define(version: 20160112192954) do
   enable_extension "plpgsql"
 
   create_table "active_admin_comments", force: :cascade do |t|
-    t.string   "namespace",     limit: 255
+    t.string   "namespace"
     t.text     "body"
-    t.string   "resource_id",   limit: 255, null: false
-    t.string   "resource_type", limit: 255, null: false
+    t.string   "resource_id",   null: false
+    t.string   "resource_type", null: false
     t.integer  "author_id"
-    t.string   "author_type",   limit: 255
+    t.string   "author_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -32,25 +32,25 @@ ActiveRecord::Schema.define(version: 20160112192954) do
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
 
   create_table "admin_users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
-    t.string   "reset_password_token",   limit: 255
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                      default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name",         limit: 255
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "order_number"
@@ -70,20 +70,20 @@ ActiveRecord::Schema.define(version: 20160112192954) do
 
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "status",     limit: 255
+    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "subtotal",               precision: 12, scale: 3
-    t.decimal  "tax",                    precision: 12, scale: 3
-    t.decimal  "shipping",               precision: 12, scale: 3
-    t.decimal  "total",                  precision: 12, scale: 3
+    t.decimal  "subtotal",   precision: 12, scale: 3
+    t.decimal  "tax",        precision: 12, scale: 3
+    t.decimal  "shipping",   precision: 12, scale: 3
+    t.decimal  "total",      precision: 12, scale: 3
   end
 
   create_table "people", force: :cascade do |t|
     t.integer  "roles_mask"
-    t.string   "first_name",          limit: 255
-    t.string   "last_name",           limit: 255
-    t.string   "tel",                 limit: 255
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "tel"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -94,10 +94,10 @@ ActiveRecord::Schema.define(version: 20160112192954) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.string   "name",               limit: 255
+    t.string   "name"
     t.text     "description"
     t.decimal  "weight"
-    t.integer  "quantity",                                               default: 0
+    t.integer  "quantity",                                   default: 0
     t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -105,8 +105,8 @@ ActiveRecord::Schema.define(version: 20160112192954) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.decimal  "price",                          precision: 8, scale: 2
-    t.boolean  "is_active",                                              default: true
+    t.decimal  "price",              precision: 8, scale: 2
+    t.boolean  "is_active",                                  default: true
   end
 
   create_table "reservations", force: :cascade do |t|
@@ -119,25 +119,25 @@ ActiveRecord::Schema.define(version: 20160112192954) do
   end
 
   create_table "tables", force: :cascade do |t|
-    t.string   "nr",         limit: 255
+    t.string   "nr"
     t.integer  "quantity"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
-    t.string   "reset_password_token",   limit: 255
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                      default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
