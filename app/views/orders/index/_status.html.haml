@@ -1,0 +1,5 @@
+%td
+  -Order::Statuses.each_with_index do |status, i|
+    -if order.status == status && Order::Statuses.size != i+1
+      = link_to update_status_path(order), method: :put, class: 'btn btn-link' do
+        %span= "Change to #{Order::Statuses[i+1]}"

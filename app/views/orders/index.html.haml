@@ -1,19 +1,29 @@
-.content
-  %h1 Orders
-  %table.table
-    %thead
-      %tr
-        %th Email
-        %th First name
-        %th Last name
-        %th Roles
-        %th{:colspan => "2"}
-    %tbody
-      - @users.each do |user|
+%ul.nav.nav-tabs
+  -Order::Statuses.each do |i|
+    %li.nav-item
+      %a.nav-link{:href => orders_path(tab: i.downcase), :role => "tab"}= i
+
+
+.tab-content
+  .content
+    %h1 Orders
+    %table.table
+      %thead
         %tr
-          %td= user.email
-          %td= user.first_name
-          %td= user.last_name
-          %td= user.person.roles
-          %td= link_to 'Show', user_path(user)
-          %td= link_to 'Destroy', user_path(user), method: :delete, data: { confirm: 'Are you sure?' }
+          %th Client
+          %th OrderItems
+          %th Last notification
+          %th Date
+          %th
+          %th{:colspan => "2"}
+      %tbody
+        - @orders.each do |order|
+          %tr
+            %td= order.user.full_name_or_email
+            %td= link_to "#{order.id}", show_client_order_path(order.id)
+            %td= "#"
+            %td= order.created_at
+            = render partial: 'orders/index/status', locals: {order: order}
+            %td
+              = link_to "Edit", order_path(order.id), class: 'btn btn-default'
+              = link_to "Delete", order_path(order.id), method: :destroy, class: 'btn btn-danger'

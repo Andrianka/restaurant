@@ -10,4 +10,13 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :person
   validates :person, presence: true
+
+  def full_name_or_email
+    if self.person
+      "#{self.person.try(:first_name)} #{self.person.try(:last_name)}"
+    else
+      self.email
+    end
+  end
+
 end

@@ -1,0 +1,12 @@
+%ul.nav.nav-pills.nav-stacked
+  -@orders.each do |order|
+    %li.nav-item
+      =link_to "", class: 'nav-link', {"data-toggle": "tab", role: "tab"}
+.tab-content
+  -@orders.each do |order|
+    %div.tab-pane{id: '#order.id'}
+      -order.order_items.each do |item|
+        = item.product.name
+        = item.quantity
+        = item.unit_price
+        = item.total_price

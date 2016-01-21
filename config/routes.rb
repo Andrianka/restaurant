@@ -13,9 +13,12 @@ Rails.application.routes.draw do
   put 'upload_avatar' => 'users#upload_avatar', as: 'upload_avatar'
   resources :products, except: [:edit, :index]
   resources :categories, except: [:edit]
+  put 'update_status/:id' => 'orders#update_status', as: 'update_status'
   resources :orders, except: [:destroy, :edit] do
     member do
       get 'my_order' => 'orders#user_order', as: 'user'
+      get 'order_items' => 'orders#client_order', as: 'show_client'
+      get 'all_orders_client' => 'orders#all_client_orders', as: 'all_client'
     end
   end
   resources :order_items, only: [:create, :update, :destroy]

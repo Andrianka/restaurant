@@ -19,7 +19,13 @@ class Order < ActiveRecord::Base
             Closed = "Closed"
             ]
 
-  scope :draft, -> { where.not(status: Order::New)}
+  scope :draft, -> { where.not(status: Order::New) }
+  scope :anew, -> { where(status: Order::New) }
+  scope :inprogress, -> { where(status: Order::InProgress) }
+  scope :done, -> { where(status: Order::Done) }
+  scope :payed, -> { where(status: Order::Payed) }
+  scope :closed, -> { where(status: Order::Closed) }
+  scope :reservation, -> { where(status: Order::Reservation) }
   
   def subtotal
     self.order_items.collect { |oi| oi.valid? ? (oi.quantity * oi.unit_price) : 0 }.sum
