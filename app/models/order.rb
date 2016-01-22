@@ -1,5 +1,6 @@
 class Order < ActiveRecord::Base
   belongs_to :user
+  has_many :notifications
   has_many :order_items
 
   accepts_nested_attributes_for :order_items
@@ -26,7 +27,11 @@ class Order < ActiveRecord::Base
   scope :payed, -> { where(status: Order::Payed) }
   scope :closed, -> { where(status: Order::Closed) }
   scope :reservation, -> { where(status: Order::Reservation) }
-  
+
+  def title
+    "#{self.id}-#{self.created_at.strftime("%d/%m/%Y")}"
+  end
+
   def subtotal
     self.order_items.collect { |oi| oi.valid? ? (oi.quantity * oi.unit_price) : 0 }.sum
   end

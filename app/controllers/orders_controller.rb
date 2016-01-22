@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  include ApplicationHelper
 
   def index
     if params[:tab] == Order::New.downcase
@@ -14,6 +15,7 @@ class OrdersController < ApplicationController
     elsif params[:tab] == Order::Reservation.downcase
       @orders = Order.all.reservation
     end
+    @notifications = Notification.all
   end
 
   def show
@@ -27,20 +29,26 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     if @order.save
+      notification_order(msg: Notification::Success, action: "created order", el: @order)
       redirect_to order_path(@order)
     else
+      notification_order(msg: Notification::Error, action: "created order", el: @order)
       render :new
     end
   end
 
   def update_status
     @order = Order.find(params[:id])
+    el_old = @order.dup
     Order::Statuses.each_with_index do |status, i|
       if @order.status == status && @order.update_attributes(status: Order::Statuses[i+1])
+        notification_order_status(msg: Notification::Success, action: "update status", el: @order, el_old: el_old)
         redirect_to action: :index, tab: Order::Statuses[i+1].downcase and return
+      else
+        notification_order_status(msg: Notification::Error, action: "updated status", el: @order, el_old: el_old)
       end
     end
-    redirect_to action: :index,tab: status.downcase and return
+    redirect_to action: :index,tab: @order.status.downcase and return
   end
 
   def user_order

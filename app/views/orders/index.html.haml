@@ -12,7 +12,6 @@
         %tr
           %th Client
           %th OrderItems
-          %th Last notification
           %th Date
           %th
           %th{:colspan => "2"}
@@ -21,8 +20,8 @@
           %tr
             %td= order.user.full_name_or_email
             %td= link_to "#{order.id}", show_client_order_path(order.id)
-            %td= "#"
             %td= order.created_at
+            %td= render partial: "notifications/order_notifications", locals: {order: order}
             = render partial: 'orders/index/status', locals: {order: order}
             %td
               = link_to "Edit", order_path(order.id), class: 'btn btn-default'
