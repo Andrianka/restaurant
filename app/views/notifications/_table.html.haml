@@ -1,0 +1,13 @@
+%table.table.table-hover
+  %thead
+    %tr
+      %th #
+      %th Person
+      %th Date
+  %tbody
+    -order.notifications.each do |n|
+      %tr.orders
+        %td{:scope => "row"}= n.content.html_safe
+        %td= n.user.person.try(:full_name) || n.user.email
+        %td= render partial: 'notifications/status', locals: {notification: n}
+        %td= n.created_at.strftime("%d-%m-%Y %H:%M")

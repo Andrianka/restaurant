@@ -4,6 +4,9 @@
     %thead
       %tr
         %th Name
+        %th Title
+        %th Description
+        %th Order number
         %th Created at
         %th{:colspan => "2"}
     %tbody
@@ -12,7 +15,7 @@
           %td= category.name
           %td= category.title
           %td= category.description
-          %td= image_tag category.image.url(:thumb)
-          %td= category.created_at
+          %td= category.order_number
+          %td= category.created_at.strftime("%d-%m-%Y %H:%M")
           %td= link_to 'Show', category_path(category)
           %td= link_to 'Destroy', category_path(category), method: :delete, data: { confirm: 'Are you sure?' }

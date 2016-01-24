@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   def index
     if params[:tab] == Order::New.downcase
       @orders = Order.all.anew
-    elsif params[:tab] == Order::InProgress.downcase
+    elsif params[:tab] == Order::Inprogress.downcase
       @orders = Order.all.inprogress
     elsif params[:tab] == Order::Done.downcase
       @orders = Order.all.done
@@ -41,11 +41,13 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     el_old = @order.dup
     Order::Statuses.each_with_index do |status, i|
-      if @order.status == status && @order.update_attributes(status: Order::Statuses[i+1])
-        notification_order_status(msg: Notification::Success, action: "update status", el: @order, el_old: el_old)
-        redirect_to action: :index, tab: Order::Statuses[i+1].downcase and return
-      else
-        notification_order_status(msg: Notification::Error, action: "updated status", el: @order, el_old: el_old)
+      if @order.status == status
+        if @order.update_attributes(status: Order::Statuses[i+1])
+          notification_order_status(msg: Notification::Success, action: "update status", el: @order, el_old: el_old)
+          redirect_to action: :index, tab: Order::Statuses[i+1].downcase and return
+        else
+          notification_order_status(msg: Notification::Error, action: "updated status", el: @order, el_old: el_old)
+        end
       end
     end
     redirect_to action: :index,tab: @order.status.downcase and return

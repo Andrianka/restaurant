@@ -6,6 +6,6 @@
     -@orders.each do |o|
       %tr
         %th
-          = link_to o.created_at, user_order_path(o.id)
+          = link_to o.created_at.strftime("%d-%m-%Y %H:%M"), user_order_path(o.id)
         %th
           = o.status

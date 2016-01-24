@@ -1,0 +1,24 @@
+=form_for @reservation do |f|
+  %fieldset
+    %h3.center= "Your reservation"
+    .form-body
+      .form-group.row
+        %label.control-label.col-md-offset-2.col-md-1 Choose A Table
+        .col-md-5
+          = f.select :table_id, options_for_select(Table.all.map{|t| ["#{t.nr} Miejsc: #{t.quantity}", t.id, {"data-table"=> t.nr}]}), {prompt: 'Select'}, {class: "form-control"}
+      .form-group.row
+        %label.control-label.col-md-offset-2.col-md-1 Choose A Table
+        .col-md-5
+          .input-append.date.form_datetime
+            = f.text_field :release_at, :readonly => "readonly", class: 'form-control'
+            %span.add-on
+              %i.icon-th
+      .form-body
+        .form-group.row
+          .center= "Fill this field or #{link_to 'Sign In', new_user_session_path, style: 'color: blue'}".html_safe
+      .form-group.row
+        %label.control-label.col-md-offset-2.col-md-1 Your Name
+        .col-md-5
+          = f.text_field :user_name, :class => 'form-control'
+  %div.margin-top-10
+    .center=f.button "Zapisz dane", :class=>"btn btn-success", :type=>'submit'

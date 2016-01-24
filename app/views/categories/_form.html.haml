@@ -1,0 +1,21 @@
+=form_for @category do |f|
+  %fieldset
+    .form-body
+      .form-group.row
+        %label.control-label.col-md-offset-2.col-md-1 Name
+        .col-md-5
+          = f.text_field :name, :class => 'form-control'
+      .form-group.row
+        %label.control-label.col-md-offset-2.col-md-1 Title
+        .col-md-5
+          = f.text_field :title, :class => 'form-control'
+      .form-group.row
+        %label.control-label.col-md-offset-2.col-md-1 Order
+        .col-md-5
+          = f.text_field :order_number, :class => 'form-control'
+      .form-group.row
+        %label.control-label.col-md-offset-2.col-md-1 Description
+        .col-md-5
+          = f.text_area :description, :class => 'form-control'
+  %div.margin-top-10
+    .center=f.button "Zapisz dane", :class=>"btn btn-success", :type=>'submit'

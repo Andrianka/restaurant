@@ -14,8 +14,12 @@ class ReservationsController < ApplicationController
 
   def create
     @reservation = Reservation.new(reservation_params)
+    if params[:reservation][:user_name].blank?
+      authenticate_user!
+    else
+      @reservation.status = Reservation::New
+    end
     @reservation.user = current_user if current_user
-    @reservation.status = Reservation::New
     if @reservation.save
       redirect_to reservation_path(@reservation)
     else
@@ -50,6 +54,6 @@ class ReservationsController < ApplicationController
 
   def reservation_params
     params.require(:reservation).permit(:table_id, :order_id, :release_at,
-    :user_id, :s)
+    :user_id, :s, :user_name)
   end
 end

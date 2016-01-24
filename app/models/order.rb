@@ -14,7 +14,7 @@ class Order < ActiveRecord::Base
   Statuses = [
             Reservation = "Reservation",
             New = "New",
-            InProgress = "InProgress",
+            Inprogress = "InProgress",
             Done = "Done",
             Payed = "Payed",
             Closed = "Closed"
@@ -22,7 +22,7 @@ class Order < ActiveRecord::Base
 
   scope :draft, -> { where.not(status: Order::New) }
   scope :anew, -> { where(status: Order::New) }
-  scope :inprogress, -> { where(status: Order::InProgress) }
+  scope :inprogress, -> { where(status: Order::Inprogress) }
   scope :done, -> { where(status: Order::Done) }
   scope :payed, -> { where(status: Order::Payed) }
   scope :closed, -> { where(status: Order::Closed) }

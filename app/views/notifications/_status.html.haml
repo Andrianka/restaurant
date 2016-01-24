@@ -1,0 +1,8 @@
+-if notification.msg_type == "success"
+    %span.label.label-success= Notification::Success
+-if notification.msg_type == "error"
+    %span.label.label-danger= Notification::Error
+-if notification.msg_type == "alert"
+    %span.label.label-warning= Notification::Alert
+-if notification.msg_type == "notice"
+    %span.label.label-info= Notification::Notice

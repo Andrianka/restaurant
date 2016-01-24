@@ -4,7 +4,7 @@ class OrderItemsController < ApplicationController
     if current_user
       @order = current_order
       @order.user_id = current_user.id
-      @order.status = Order::InProgress
+      @order.status = Order::Inprogress
       @order.save
       @order_item = @order.order_items.find_by(product_id: params[:order_item][:product_id])
       if @order_item.nil?

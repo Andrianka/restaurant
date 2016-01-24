@@ -1,7 +1,7 @@
 %ul.nav.nav-tabs
   -Order::Statuses.each do |i|
     %li.nav-item
-      %a.nav-link{:href => orders_path(tab: i.downcase), :role => "tab"}= i
+      %a.nav-link{class: params[:tab].capitalize == i ? 'active' : '', :href => orders_path(tab: i.downcase), :role => "tab"}= i
 
 
 .tab-content
@@ -20,7 +20,7 @@
           %tr
             %td= order.user.full_name_or_email
             %td= link_to "#{order.id}", show_client_order_path(order.id)
-            %td= order.created_at
+            %td= order.created_at.strftime("%d-%m-%Y %H:%M")
             %td= render partial: "notifications/order_notifications", locals: {order: order}
             = render partial: 'orders/index/status', locals: {order: order}
             %td

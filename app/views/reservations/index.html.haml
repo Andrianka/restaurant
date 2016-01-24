@@ -15,6 +15,6 @@
           %td= reservation.table_id
           -if reservation.order
             %td= link_to reservation.order_id, order_path(order_id)
-          %td= reservation.created_at
+          %td= reservation.created_at.strftime("%d-%m-%Y %H:%M")
           %td= link_to 'Show', reservation_path(reservation)
           %td= link_to 'Destroy', reservation_path(reservation), method: :delete, data: { confirm: 'Are you sure?' }
