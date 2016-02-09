@@ -1,0 +1,25 @@
+.container
+  %h3 Listing reservation
+  %table.table
+    %thead
+      %tr
+        %th User
+        %th Table
+        %th Order
+        %th Release at
+        %th Status
+        %th Created at
+        %th{:colspan => "2"}
+    %tbody
+      -@reservations.each do |reservation|
+        %tr
+          %td= reservation.user.try(:email) || reservation.email
+          %td= reservation.table_id
+          -if reservation.order
+            %td= link_to reservation.order_id, order_path(order_id)
+          -else
+            %td
+          %td= reservation.release_at.strftime("%d-%m-%Y %H:%M")
+          %td= reservation.status
+          %td= reservation.created_at.strftime("%d-%m-%Y %H:%M")
+          %td= link_to 'Show', reservation_path(reservation)

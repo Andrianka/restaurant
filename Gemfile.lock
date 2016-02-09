@@ -284,6 +284,7 @@ DEPENDENCIES
   activeadmin!
   awesome_print
   bootstrap!
+  bourbon
   cancancan
   coffee-rails (~> 4.0.0)
   datetimepicker-rails!

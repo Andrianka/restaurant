@@ -1,7 +1,12 @@
 class ReservationsController < ApplicationController
+  before_action :authenticate_user!, except: [:create, :new]
 
   def index
-    @reservations = Reservation.all
+    if current_user.person.has_any_role? :boss, :manager
+      @reservations = Reservation.active
+    else
+      @reservations = Reservation.accepted
+    end
   end
 
   def show
@@ -14,14 +19,15 @@ class ReservationsController < ApplicationController
 
   def create
     @reservation = Reservation.new(reservation_params)
-    if params[:reservation][:user_name].blank?
+    if params[:reservation][:email].blank?
       authenticate_user!
     else
       @reservation.status = Reservation::New
     end
     @reservation.user = current_user if current_user
     if @reservation.save
-      redirect_to reservation_path(@reservation)
+      session[:reservation]= @reservation.id if !current_user
+      redirect_to menu_path, notice: 'You can create an order'
     else
       render :new
     end
@@ -43,17 +49,22 @@ class ReservationsController < ApplicationController
     end
   end
 
+  def change_status_accepted
+    @reservation = Reservation.find(params[:id])
+    @reservation.update_attributes(status: Reservation::Accepted)
+    redirect_to :back
+  end
+
   def change_status_declined
     @reservation = Reservation.find(params[:id])
-    @reservation.status = Reservation::Declined
-    @reservation.save
-    redirect_to profile_path(tab: 'reservations')
+    @reservation.update_attributes(status: Reservation::Declined)
+    redirect_to :back
   end
 
   private
 
   def reservation_params
     params.require(:reservation).permit(:table_id, :order_id, :release_at,
-    :user_id, :s, :user_name)
+    :user_id, :s, :email)
   end
 end

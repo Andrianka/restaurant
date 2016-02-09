@@ -2,7 +2,19 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @users = User.all
+    if params[:tab] == 'manager'
+      @persons = Person.where(roles_mask: 1)
+    elsif params[:tab] == 'client'
+      @persons = Person.where(roles_mask: 2)
+    elsif params[:tab] == 'cook'
+      @persons = Person.where(roles_mask: 4)
+    elsif params[:tab] == 'waiter'
+      @persons = Person.where(roles_mask: 8)
+    elsif params[:tab] == 'boss'
+      @persons = Person.where(roles_mask: 16)
+    else
+      @persons = Person.all
+    end
   end
 
   def show

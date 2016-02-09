@@ -1,0 +1,20 @@
+= form_for(@table) do |f|
+  - if @table.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@table.errors.count, "error")
+        prohibited this order from being saved:
+      %ul
+        - @table.errors.full_messages.each do |message|
+          %li= message
+  .form-body
+    .form-group.row
+      = f.label :nr, "Numer", :class => 'col-md-offset-2 col-md-1 control-label'
+      .col-md-5
+        = f.text_field :nr, :class => 'form-control'
+    .form-group.row
+      = f.label :quantity, "Quantity", :class => 'col-md-offset-2 col-md-1 control-label'
+      .col-md-5
+        = f.number_field :quantity, :class => 'form-control', min: 0
+    %div.margin-top-10
+      .center=f.button "Submit", :class=>"btn btn-primary", :type=>'submit'

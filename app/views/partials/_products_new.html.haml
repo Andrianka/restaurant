@@ -1,0 +1,21 @@
+.grid_12
+  %h3.head3 Our other products
+-@products_news.each do |product|
+  .news
+    %time{:datetime => "2013-01-01"}
+      Sept
+      %span 04
+    .extra_wrapper
+      = image_tag product.image.url(:thumb)
+      %p.col1>
+        = link_to product.name, product_path(product.id)
+      = product.description
+
+
+
+  -# .grid_3
+  -#   .box.maxheight
+  -#     = image_tag product.image.url(:thumb)
+  -#     .title
+  -#       =link_to product.name, product_path(product.id), class: 'btn btn-link'
+  -#     = product.description

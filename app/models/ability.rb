@@ -2,7 +2,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    user ||= User.new
+    user ||= Person.new
     access_abilities(user.person)
   end
 

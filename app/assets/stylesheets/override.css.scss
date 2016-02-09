@@ -1,3 +1,7 @@
+.container{
+  padding-top: 0 !important;
+}
+
 .datetimepicker.dropdown-menu{
   top: 54% !important;
   left: 28% !important;
@@ -23,9 +27,9 @@
   border-radius: 0.25rem !important;
 }
 
-.table{
-  width: 95% !important;
-}
+// .table{
+//   width: 95% !important;
+// }
 
 .modal.fade.in{
   display: block !important;
@@ -37,4 +41,13 @@
 
 .form-group.row label{
   margin-top: 10px;
+}
+
+h4.card-title{
+  font-size: 1.5em !important;
+  margin-bottom: 25px;
+}
+
+.tab-content .btn{
+  margin-top: 20px;
 }

@@ -1,6 +1,7 @@
--if current_user.person.has_role? [:manager, :waiter, :cook]
-  = render partial: 'index/personal'
--elsif current_user.person.has_role? :boss
-  = render partial: 'index/boss'
--else
-  = render partial: 'index/client'
+.container
+  -if current_user.person.has_role? [:manager, :waiter, :cook]
+    = render partial: 'users/index/personal'
+  -elsif current_user.person.has_role? :boss
+    = render partial: 'users/index/boss'
+  -else
+    = render partial: 'users/index/client'

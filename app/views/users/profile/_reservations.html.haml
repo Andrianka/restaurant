@@ -17,4 +17,4 @@
         %th
           = r.status
         %th
-          = link_to 'Decline', declined_reservation_path(r.id), method: :put
+          = link_to "Delete", reservations_path(r.id), method: :delete, class: 'btn btn-danger'

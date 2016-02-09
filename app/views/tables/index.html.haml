@@ -1,15 +1,17 @@
-.content
-  %h1 Listing tables
+.container
+  %h3.center Listing tables
   %table.table
     %thead
       %tr
+        %th Number
         %th Places
         %th{:colspan => "2"}
     %tbody
       - @tables.each do |table|
         %tr
           %td= table.nr
+          %td= table.quantity
           %td= link_to 'Show', table_path(table)
           %td= link_to 'Destroy', table_path(table), method: :delete, data: { confirm: 'Are you sure?' }
   %br/
-  = link_to 'New Table', new_table_path
+  = link_to 'New Table', new_table_path, class: "btn btn-primary"

@@ -5,7 +5,7 @@ class Order < ActiveRecord::Base
 
   accepts_nested_attributes_for :order_items
 
-  validates :user, presence: true
+  # validates :user, presence: true
   validates :status, presence: true
 
   before_create :set_order_status

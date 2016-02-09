@@ -1,20 +1,4 @@
-.content
-  %h1 Tables
-  %table.table
-    %thead
-      %tr
-        %th User
-        %th Table
-        %th Order
-        %th Created at
-        %th{:colspan => "2"}
-    %tbody
-      -@reservations.each do |reservation|
-        %tr
-          %td= reservation.user.email
-          %td= reservation.table_id
-          -if reservation.order
-            %td= link_to reservation.order_id, order_path(order_id)
-          %td= reservation.created_at.strftime("%d-%m-%Y %H:%M")
-          %td= link_to 'Show', reservation_path(reservation)
-          %td= link_to 'Destroy', reservation_path(reservation), method: :delete, data: { confirm: 'Are you sure?' }
+-if current_user.person.has_any_role? :boss, :manager
+  = render partial: "reservations/index/manage_reservations"
+-else
+  = render partial: "reservations/index/show_reservations"

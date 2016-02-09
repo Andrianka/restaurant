@@ -22,8 +22,9 @@ Rails.application.routes.draw do
     end
   end
   resources :order_items, only: [:create, :update, :destroy]
-  resources :reservations, except: [:edit] do
+  resources :reservations do
     member do
+      put 'reservation_accepted' => 'reservations#change_status_accepted', as: 'accepted'
       put 'reservation_declined' => 'reservations#change_status_declined', as: 'declined'
     end
   end

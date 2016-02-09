@@ -17,6 +17,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @products_news= Product.all.sample(3)
   end
 
   def create

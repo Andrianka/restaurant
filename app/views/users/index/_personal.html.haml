@@ -16,4 +16,7 @@
           %td= user.person.try(:last_name)
           %td= user.person.try(:roles)
           %td= link_to 'Show', user_path(user)
-          %td= link_to 'Destroy', user_path(user), method: :delete, data: { confirm: 'Are you sure?' }
+          -if can? :manage, user
+            %td= link_to 'Destroy', user_path(user), method: :delete, data: { confirm: 'Are you sure?' }
+  -if can? :create, User
+    = link_to 'Add new user', new_user_path

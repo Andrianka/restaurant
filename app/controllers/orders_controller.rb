@@ -14,6 +14,8 @@ class OrdersController < ApplicationController
       @orders = Order.all.closed
     elsif params[:tab] == Order::Reservation.downcase
       @orders = Order.all.reservation
+    else
+      @orders = Order.all
     end
     @notifications = Notification.all
   end

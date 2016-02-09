@@ -1,28 +1,28 @@
-%ul.nav.nav-tabs
-  -Order::Statuses.each do |i|
-    %li.nav-item
-      %a.nav-link{class: params[:tab].capitalize == i ? 'active' : '', :href => orders_path(tab: i.downcase), :role => "tab"}= i
+.container
+  %ul.nav.nav-tabs
+    -Order::Statuses.each do |i|
+      %li.nav-item
+        %a.nav-link{class: params[:tab].try(:capitalize) == i ? 'active' : '', :href => orders_path(tab: i.downcase), :role => "tab"}= i
 
-
-.tab-content
-  .content
-    %h1 Orders
-    %table.table
-      %thead
-        %tr
-          %th Client
-          %th OrderItems
-          %th Date
-          %th
-          %th{:colspan => "2"}
-      %tbody
-        - @orders.each do |order|
+  .tab-content
+    .content
+      %h1 Orders
+      %table.table
+        %thead
           %tr
-            %td= order.user.full_name_or_email
-            %td= link_to "#{order.id}", show_client_order_path(order.id)
-            %td= order.created_at.strftime("%d-%m-%Y %H:%M")
-            %td= render partial: "notifications/order_notifications", locals: {order: order}
-            = render partial: 'orders/index/status', locals: {order: order}
-            %td
-              = link_to "Edit", order_path(order.id), class: 'btn btn-default'
-              = link_to "Delete", order_path(order.id), method: :destroy, class: 'btn btn-danger'
+            %th Client
+            %th OrderItems
+            %th Date
+            %th
+            %th{:colspan => "2"}
+        %tbody
+          - @orders.each do |order|
+            %tr
+              %td= order.user.full_name_or_email
+              %td= link_to "#{order.id}", show_client_order_path(order.id)
+              %td= order.created_at.strftime("%d-%m-%Y %H:%M")
+              %td= render partial: "notifications/order_notifications", locals: {order: order}
+              = render partial: 'orders/index/status', locals: {order: order}
+              %td
+                = link_to "Edit", order_path(order.id), class: 'btn btn-default'
+                = link_to "Delete", order_path(order.id), method: :destroy, class: 'btn btn-danger'

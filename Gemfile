@@ -37,14 +37,15 @@ gem "role_model"
 gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
 gem 'sass', ">= 3.4.18"
 gem "figaro"
-gem "pry"
 gem 'faker'
 gem 'momentjs-rails', '~> 2.9',  :github => 'derekprior/momentjs-rails'
 gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
+gem 'bourbon'
 group :development do
   gem "meta_request"
   gem "awesome_print", require:"ap"
   gem "erb2haml"
+  gem "pry"
 end
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'

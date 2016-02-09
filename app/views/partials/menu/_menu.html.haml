@@ -1,0 +1,13 @@
+%ul
+  %li.current.bt-icon
+    %a{:href => root_path} Home
+  %li.bt-icon
+    =link_to "Menu", menu_path
+  %li.bt-icon
+    = link_to "Orders", orders_path(tab: Order::Reservation)
+  %li.bt-icon
+    =link_to "Reservations", reservations_path
+  %li.bt-icon
+    =link_to "Notifications", "#"
+  %li.bt-icon
+    =link_to "Users", users_path(tab: 'manager')

@@ -1,0 +1,27 @@
+%ul.nav.nav-tabs
+  -Person.valid_roles.each do |i|
+    %li.nav-item
+      %a.nav-link{class: params[:tab] == i.to_s ? 'active' : '', :href => users_path(tab: i.downcase), :role => "tab"}= i.to_s.pluralize.camelize
+
+.tab-content
+  .content
+    %h1 Users
+    %table.table
+      %thead
+        %tr
+          %th Email
+          %th First name
+          %th Last name
+          %th Roles
+          %th{:colspan => "2"}
+      %tbody
+        - @persons.each do |person|
+          %tr
+            %td= person.user.email
+            %td= person.try(:first_name)
+            %td= person.try(:last_name)
+            %td= link_to 'Show', user_path(person.user)
+            -if can? :manage, person.user
+              %td= link_to 'Destroy', user_path(person.user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+    -if can? :create, User
+      = link_to 'Add new user', new_user_path, class: 'btn btn-link'

@@ -1,0 +1,28 @@
+.container
+  %h3 Listing reservation
+  %table.table
+    %thead
+      %tr
+        %th User
+        %th Table
+        %th Order
+        %th Status
+        %th Release at
+        %th Created at
+        %th{:colspan => "4"}
+    %tbody
+      -@reservations.each do |reservation|
+        %tr
+          %td= reservation.user.try(:email) || reservation.email
+          %td= reservation.table_id
+          -if reservation.order
+            %td= link_to reservation.order_id, order_path(order_id)
+          -else
+            %td
+          %td= reservation.status
+          %td= reservation.release_at.strftime("%d-%m-%Y %H:%M")
+          %td= reservation.created_at.strftime("%d-%m-%Y %H:%M")
+          %td= link_to "Accept", accepted_reservation_path(reservation), method: :put, class: 'btn btn-success'
+          %td= link_to "Decline", declined_reservation_path(reservation), method: :put, class: 'btn btn-danger'
+          %td= link_to 'Show', reservation_path(reservation)
+          %td= link_to 'Destroy', reservation_path(reservation), method: :delete, data: { confirm: 'Are you sure?' }
