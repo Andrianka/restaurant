@@ -3,17 +3,17 @@ class UsersController < ApplicationController
 
   def index
     if params[:tab] == 'manager'
-      @persons = Person.where(roles_mask: 1)
+      @persons = Person.where(roles_mask: 1).paginate(page: params[:page], per_page: 10)
     elsif params[:tab] == 'client'
-      @persons = Person.where(roles_mask: 2)
+      @persons = Person.where(roles_mask: 2).paginate(page: params[:page], per_page: 10)
     elsif params[:tab] == 'cook'
-      @persons = Person.where(roles_mask: 4)
+      @persons = Person.where(roles_mask: 4).paginate(page: params[:page], per_page: 10)
     elsif params[:tab] == 'waiter'
-      @persons = Person.where(roles_mask: 8)
+      @persons = Person.where(roles_mask: 8).paginate(page: params[:page], per_page: 10)
     elsif params[:tab] == 'boss'
-      @persons = Person.where(roles_mask: 16)
+      @persons = Person.where(roles_mask: 16).paginate(page: params[:page], per_page: 10)
     else
-      @persons = Person.all
+      @persons = Person.all.paginate(page: params[:page], per_page: 10)
     end
   end
 

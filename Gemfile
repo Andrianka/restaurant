@@ -41,11 +41,13 @@ gem 'faker'
 gem 'momentjs-rails', '~> 2.9',  :github => 'derekprior/momentjs-rails'
 gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 gem 'bourbon'
+gem 'will_paginate'
 group :development do
   gem "meta_request"
   gem "awesome_print", require:"ap"
   gem "erb2haml"
   gem "pry"
+  gem "rails-erd"
 end
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'

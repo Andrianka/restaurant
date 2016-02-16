@@ -17,58 +17,83 @@ end
 
 #-----------------------------------------------------------#
 Category.destroy_all
-category1 = Category.create!(name: "Salads", order_number: 3)
-category2 = Category.create!(name: "Specials", order_number: 1)
-category3 = Category.create!(name: "Breakfast", order_number: 2)
+['Specials', 'Dinner', 'Lunch', 'Breakfast', 'Brunch', 'Dessert'].each_with_index do |k, v|
+  c = Category.create!(name: k, order_number: v)
+end
 
 @weight = ['100', '200', '350', '250']
 
 Product.destroy_all
-['Strawberry', 'SouthWestern Chicken', 'Oriental Chicken', 'Taco', 'Ceaser'].each do |value|
-  p = Product.create!(name: value, category_id: Category.find_by(name: 'Salads').id,
+["ROASTED ACORN SQUASH SOUP", "SHRIMP COCKTAIL & PROSCIUTTO",
+"SIMPLE SALAD", "BABY BEETS & CITRUS", "BLUE CRAB RAVIOLO",
+"LOBSTER TOAST", "GOFFLE ROAD FARM CHICKEN BREAST"].each do |value|
+  p = Product.create!(name: value, category_id: Category.find_by(name: 'Dinner').id,
   weight: @weight.sample)
-  p.price = Faker::Commerce.price
-  p.quantity = Faker::Number.decimal(2)
+  p.price = Faker::Number.between(5, 40)
+  p.quantity = Faker::Number.between(1, 20)
   p.save
 end
-['Soup cream with wild mushroom', 'Chicken Cordon Blue'].each do  |value|
+["BREAST OF LONG ISLAND DUCK", "BEER CHEESE & BROCCOLI",
+"PECORINO FRIES", "CREEKSTONE FARMS SHORTRIB"].each do  |value|
   p = Product.create!(name: value, category_id: Category.find_by(name: 'Specials').id,
   weight: @weight.sample)
-  p.price = Faker::Commerce.price
-  p.quantity = Faker::Number.decimal(2)
+  p.price = Faker::Number.between(5, 40)
+  p.quantity = Faker::Number.between(1, 20)
   p.save
 end
-["Belgian waffles", "Eggs", "Toasts"].each do  |value|
-  p =Product.create!(name: value, category_id: Category.find_by(name: 'Breakfast').id,
+["HEARTY GREEN SALAD", "CHARRED BUTTERNUT SQUASH", "ROASTED ACORN SQUASH SOUP",
+"CHEESE & SEASONAL FRUIT", "MAINE LOBSTER TOAST"].each do  |value|
+  p = Product.create!(name: value, category_id: Category.find_by(name: 'Brunch').id,
   weight: @weight.sample)
-  p.price = Faker::Commerce.price
-  p.quantity = Faker::Number.decimal(2)
+  p.price = Faker::Number.between(1, 15)
+  p.quantity = Faker::Number.between(1, 20)
   p.save
 end
 
+["CROISSANT", "GRAPEFRUIT BRULEE", "SMOKED PASTRAMI SALMON",
+"CHEESE & CURED MEATS", "FRUIT SALAD & BERRIES", "CLASSIC EGGS BENEDICT",
+"ORGANIC EGG WHITE OMELET", "FRESH BAKED WAFFLES"].each do  |value|
+  p = Product.create!(name: value, category_id: Category.find_by(name: 'Breakfast').id,
+  weight: @weight.sample)
+  p.price = Faker::Number.between(1, 15)
+  p.quantity = Faker::Number.between(1, 20)
+  p.save
+end
+
+["DRUNKEN DONUTS", "COFFEE", "CAPPUCCINO", "ESPRESSO",
+"COFFEE","KITCHEN CHEESE PLATE"].each do  |value|
+  p = Product.create!(name: value, category_id: Category.find_by(name: 'Dessert').id,
+  weight: @weight.sample)
+  p.price = Faker::Number.between(1, 15)
+  p.quantity = Faker::Number.between(1, 20)
+  p.save
+end
 #-----------------------------------------------------------#
 User.destroy_all
+Person.destroy_all
 boss = User.create!(email: 'boss@example.com', password: 'password',
   password_confirmation: 'password', person_attributes: {roles: [:boss],
-  first_name: 'Boss name', last_name: 'Boss surname' }
+  first_name: Faker::Name.first_name, last_name: Faker::Name.last_name }
 )
 
 manager = User.create!(email: 'manager@example.com', password: 'password',
   password_confirmation: 'password', person_attributes: {roles: [:manager],
-  first_name: 'Manager name', last_name: 'Manager surname' }
+  first_name: Faker::Name.first_name, last_name: Faker::Name.last_name }
 )
 
 waiter = User.create!(email: 'waiter@example.com', password: 'password',
   password_confirmation: 'password', person_attributes: {roles: [:waiter],
-  first_name: 'Waiter name', last_name: 'Waiter surname' }
+  first_name: Faker::Name.first_name, last_name: Faker::Name.last_name }
 )
 
 cook = User.create!(email: 'cook@example.com', password: 'password',
   password_confirmation: 'password', person_attributes: {roles: [:cook],
-  first_name: 'Boss name', last_name: 'Cook surname' }
+  first_name: Faker::Name.first_name, last_name: Faker::Name.last_name }
 )
 
-client = User.create!(email: 'client@example.com', password: 'password',
-  password_confirmation: 'password', person_attributes: {roles: [:client],
-  first_name: 'Client name', last_name: 'Client surname' }
-)
+30.times do |n|
+  client = User.create!(email: "client_#{n}@example.com", password: 'password',
+    password_confirmation: 'password', person_attributes: {roles: [:client],
+    first_name: Faker::Name.first_name, last_name: Faker::Name.last_name }
+  )
+end
