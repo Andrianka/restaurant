@@ -74,7 +74,6 @@ class OrdersController < ApplicationController
   end
 
   def order_completed
-    binding.pry
     current_order.update_attributes(total: current_order.subtotal,
     completed: true)
     session[:order_id] = nil
