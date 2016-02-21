@@ -2,20 +2,21 @@
   %fieldset
     %h3.center Log in
     = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-      .form-body
-        .form-group.row
-          .control-label.col-md-offset-2.col-md-1= f.label :email
-          .col-md-5
-            = f.email_field :email, autofocus: true, :class => 'form-control'
-        .form-group.row
-          .control-label.col-md-offset-2.col-md-1= f.label :password
-          .col-md-5
-            = f.password_field :password, autocomplete: "off", :class => 'form-control'
-      - if devise_mapping.rememberable?
-        .form-group.row
-          .center= f.check_box :remember_me
-          .center= f.label :remember_me
+      .form-horizontal
+        .form-body
+          .form-group.row
+            .control-label.col-md-3= f.label :email
+            .col-md-7
+              = f.email_field :email, autofocus: true, :class => 'form-control'
+          .form-group.row
+            .control-label.col-md-3= f.label :password
+            .col-md-7
+              = f.password_field :password, autocomplete: "off", :class => 'form-control'
+        - if devise_mapping.rememberable?
+          .form-group.row
+            .center= f.check_box :remember_me
+            .center= f.label :remember_me
 
-      .form-group.row
-        .center= f.submit "Log in", class: 'btn btn-primary'
-        .center= render "devise/shared/links"
+        .form-group.row
+          .center= f.submit "Log in", class: 'btn btn-primary'
+          .center= render "devise/shared/links"

@@ -1,0 +1,13 @@
+-@promotions.each do |promotion|
+  .container_12{style: 'border-bottom: 1px solid #eee; margin-bottom: 20px'}
+    .grid_8
+      %h3.center= promotion.title
+      =image_tag promotion.image.url(:medium), class: 'img_inner fleft'
+      .extra_wrapper
+        -if promotion.date_until
+          %p.col1
+            %b Promotion ends:
+            = "#{promotion.date_until}"
+        %p.col1
+          %b Description:
+          =promotion.content

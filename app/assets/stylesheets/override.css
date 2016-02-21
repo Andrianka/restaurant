@@ -1,0 +1,76 @@
+.container{
+  padding-top: 0 !important;
+}
+
+.datetimepicker.dropdown-menu{
+  top: 54% !important;
+  left: 28% !important;
+  padding: 15px;
+}
+
+.promotion .datetimepicker.dropdown-menu{
+  top: 58% !important;
+  left: 39% !important;
+  padding: 15px;
+}
+
+.table-condensed{
+  th{
+    padding: 5px;
+  }
+  td{
+    padding: 5px;
+  }
+}
+
+.price_link{
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+  min-height: 30px;
+}
+
+.form-control{
+  border-radius: 0.25rem !important;
+}
+
+.table.profile{
+  width: 95% !important;
+}
+
+.modal.fade.in{
+  display: block !important;
+}
+
+.table td, .table th{
+  vertical-align: middle !important;
+}
+
+/*.form-group.row label{
+  margin-top: 10px;
+}*/
+
+h4.card-title{
+  font-size: 1.5em !important;
+  margin-bottom: 25px;
+}
+
+.form-group.avatar{
+  margin-left: 60px;
+}
+
+.btn.avatar{
+  margin-left: 60px;
+}
+
+input[type=checkbox], input[type=file]{
+  margin-top:10px;
+}
+
+.select{
+  width: 10%;
+}
+
+h3{
+  font-size: 16pt !important;
+}

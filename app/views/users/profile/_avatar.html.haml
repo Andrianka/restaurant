@@ -1,8 +1,7 @@
-%p
-  = image_tag @user.person.avatar.url(:medium)
-
 =form_for @user, url: upload_avatar_path, html: { multipart: true } do |f|
+  .form-group
+    = image_tag @user.person.avatar.url(:medium)
   =f.fields_for :person do |p|
-    .form-group.row
+    .form-group.avatar
       =p.file_field :avatar
-  = f.submit 'Upload',  class: 'btn btn-primary'
+  = f.submit 'Upload',  class: 'btn btn-primary avatar'

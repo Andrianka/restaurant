@@ -7,10 +7,9 @@ class User < ActiveRecord::Base
   has_many :orders
   has_many :reservations
   has_many :notifications
-  has_one  :person
+  has_one  :person, dependent: :destroy
 
   accepts_nested_attributes_for :person
-  validates :person, presence: true
 
   def full_name_or_email
     if self.person

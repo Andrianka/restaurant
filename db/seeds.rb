@@ -60,6 +60,16 @@ end
   p.save
 end
 
+["CROISSANT", "GRAPEFRUIT BRULEE", "SMOKED PASTRAMI SALMON",
+"CHEESE & CURED MEATS", "CLASSIC EGGS BENEDICT",
+ "FRESH BAKED WAFFLES"].each do  |value|
+  p = Product.create!(name: value, category_id: Category.find_by(name: 'Lunch').id,
+  weight: @weight.sample)
+  p.price = Faker::Number.between(1, 15)
+  p.quantity = Faker::Number.between(1, 20)
+  p.save
+end
+
 ["DRUNKEN DONUTS", "COFFEE", "CAPPUCCINO", "ESPRESSO",
 "COFFEE","KITCHEN CHEESE PLATE"].each do  |value|
   p = Product.create!(name: value, category_id: Category.find_by(name: 'Dessert').id,

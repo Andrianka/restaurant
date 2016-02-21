@@ -2,11 +2,11 @@ class OrderItemsController < ApplicationController
 
   def create
     @reservation = session[:reservation]
-    if current_user || session[:reservation]
+    if current_user || session[:reservation].present?
       @order = current_order
-      @order.user_id = current_user.id if current_user && @reservation.blank
+      @order.user_id = current_user.id if current_user && @reservation.blank?
       @order.reservation_id = session[:reservation] if @reservation
-      @order.status = Order::Reservation if @reservation
+      @order.status = @reservation ? Order::Reservation : Order::New
       @order.save
       @order_item = @order.order_items.find_by(product_id: params[:order_item][:product_id])
       if @order_item.nil?

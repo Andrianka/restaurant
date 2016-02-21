@@ -1,16 +1,4 @@
-.container_12
-  .grid_8
-    %h3.center= @product.name
-    =image_tag @product.image.url(:thumb), class: 'img_inner fleft'
-    .extra_wrapper
-      %p.col1
-        %b Weight
-        =@product.weight
-      %p.col1
-        %b Price
-        =@product.price
-      %p
-        %b Description
-        =@product.description
-  .grid_4
-    = render partial: 'partials/products_new'
+-if current_user && (current_user.person.has_any_role? :boss, :manager)
+  = render partial: "products/show/manage_products"
+-else
+  = render partial: "products/show/show_product"

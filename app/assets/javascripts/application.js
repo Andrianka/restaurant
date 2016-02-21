@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require gritter
 //= require tether
-//= require bootstrap
 //= require bootstrap-datetimepicker.min.js
 //= require datetime-picker
+//= require bootstrap
 //= require_tree .

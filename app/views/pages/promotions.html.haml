@@ -1,0 +1,26 @@
+.container
+  %h3 Listing promotions
+  %table.table
+    %thead
+      %tr
+        %th Title
+        %th Content
+        %th From
+        %th Until
+        %th Active
+        %th Created at
+        %th{:colspan => "4"}
+    %tbody
+      -@promotions.each do |promotion|
+        %tr
+          %td= promotion.title
+          %td= promotion.content
+          %td= promotion.date_from.strftime("%d-%m-%Y %H:%M")
+          %td= promotion.date_until.strftime("%d-%m-%Y %H:%M")
+          %td= promotion.active
+          %td= reservation.created_at.strftime("%d-%m-%Y %H:%M")
+          %td= link_to "To Active", active_promotion_path(promotion), method: :get, class: 'btn btn-success'
+          %td= link_to "To Deactive", deactive_promotion_path(promotion), method: :get, class: 'btn btn-danger'
+          %td= link_to 'Show', promotions_path(promotion)
+          %td= link_to 'Destroy', reservation_path(reservation), method: :delete, data: { confirm: 'Are you sure?' }
+    = link_to "Add new promotion", new_promotion_path, class: 'btn btn-link'

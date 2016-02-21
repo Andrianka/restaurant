@@ -1,16 +1,16 @@
 =form_for @user do |f|
   .form-body
-    .form-group.row
+    .form-group
       %label.email
-        =f.text_field :email, :placeholder => "E-mail:", class: 'form-control'
+      =f.text_field :email, :placeholder => "E-mail:", class: 'form-control'
     =f.fields_for :person do |p|
-      .form-group.row
+      .form-group
         %label.name
-          =p.text_field :first_name, :placeholder => "Name:", class: 'form-control'
-      .form-group.row
+        =p.text_field :first_name, :placeholder => "Name:", class: 'form-control'
+      .form-group
         %label.name
-          =p.text_field :last_name, :placeholder => "Surname:", class: 'form-control'
-      .form-group.row
+        =p.text_field :last_name, :placeholder => "Surname:", class: 'form-control'
+      .form-group
         %label
-          =p.text_field :tel, :placeholder => "Phone:", class: 'form-control'
+        =p.text_field :tel, :placeholder => "Phone:", class: 'form-control'
     = f.submit "Update", class: 'btn btn-primary'

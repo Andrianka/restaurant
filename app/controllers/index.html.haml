@@ -1,0 +1,4 @@
+-if current_user.person.has_any_role? :boss, :manager
+  = render partial: "reservations/index/manage_reservations"
+-else
+  = render partial: "reservations/index/show_reservations"

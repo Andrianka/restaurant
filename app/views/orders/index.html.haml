@@ -1,8 +1,8 @@
 .container
   %ul.nav.nav-tabs
     -Order::Statuses.each do |i|
-      %li.nav-item
-        %a.nav-link{class: params[:tab].try(:capitalize) == i ? 'active' : '', :href => orders_path(tab: i.downcase), :role => "tab"}= i
+      %li{class: params[:tab].try(:capitalize) == i ? 'active' : '', role: "presentation"}
+        %a{:href => orders_path(tab: i.downcase), :role => "tab"}= i
 
   .tab-content
     .content
@@ -24,5 +24,5 @@
               %td= render partial: "notifications/order_notifications", locals: {order: order}
               = render partial: 'orders/index/status', locals: {order: order}
               %td
-                = link_to "Edit", order_path(order.id), class: 'btn btn-default'
+                = link_to "Show", order_path(order.id), class: 'btn btn-default'
                 = link_to "Delete", order_path(order.id), method: :destroy, class: 'btn btn-danger'

@@ -1,0 +1,29 @@
+.container
+  %h3 Listing products
+  %table.table
+    %thead
+      %tr
+        %th Category
+        %th Name
+        %th Price
+        %th Weight
+        %th Unit
+        %th Quantity
+        %th Image
+        %th Change to
+        %th Created at
+        %th{:colspan => "2"}
+    %tbody
+      -@products.each do |product|
+        %tr
+          %td= link_to product.category.name, categories_path(product.category)
+          %td= product.name
+          %td= product.price
+          %td= product.weight
+          %td= product.unit
+          %td= product.quantity
+          %td= image_tag product.image.url(:thumb)
+          %td= (product.is_active ? (link_to 'Deactive', "#", class: 'btn btn-link') : (link_to "Active", "#", class: 'btn btn-link'))
+          %td= product.created_at.strftime("%d-%m-%Y %H:%M")
+          %td= link_to 'Show', product_path(product)
+          %td= link_to 'Destroy', product_path(product), method: :delete, data: { confirm: 'Are you sure?' }

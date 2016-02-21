@@ -12,6 +12,8 @@ class RegistrationsController < Devise::RegistrationsController
     build_resource(sign_up_params)
     resource.save
     resource.person.update_attributes(roles: [:client])
+    resource.points += Point.active.registration if Point.active.present?
+    resource.points += Point.active.form_completed if Point.active.present? && resource.person.form_completed?(resource)
     yield resource if block_given?
     if resource.active_for_authentication?
       set_flash_message :notice, :signed_up if is_flashing_format?

@@ -1,0 +1,33 @@
+= form_for(@promotion) do |f|
+  .container_12
+    .grid_8
+      %div{style: 'margin-bottom: 30px'}
+        %h4.center= @promotion.title
+      =image_tag @promotion.image.url(:medium), class: 'img_inner fleft'
+      .extra_wrapper
+        %p.col1
+          %b Name
+          = f.text_field :title, value: @promotion.title, class: 'form-control'
+        %p.col1
+          %b Description
+          = f.text_area :content, value: @promotion.content, class: 'form-control'
+        %p.col1
+          %b Date from
+          .input-append.date.form_datetime.promotion
+            = f.text_field :date_from, :readonly => "readonly", class: 'form-control'
+            %span.add-on
+              %i.icon-th
+        %p.col1
+          %b Date until
+          .input-append.date.form_datetime.promotion
+            = f.text_field :date_until, :readonly => "readonly", class: 'form-control'
+            %span.add-on
+              %i.icon-th
+        %p.col1
+          %b Image
+          = f.file_field :image
+        %p.col1
+          %b Active
+          = f.check_box :active
+        %p.col1
+          = f.submit

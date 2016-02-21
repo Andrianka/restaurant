@@ -34,8 +34,8 @@ gem "gritter", "~> 1.2.0" #https://github.com/RobinBrouwer/gritter
 gem "paperclip"
 gem 'activeadmin', github: 'activeadmin'
 gem "role_model"
-gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
-gem 'sass', ">= 3.4.18"
+
+# gem 'sass', ">= 3.4.18"
 gem "figaro"
 gem 'faker'
 gem 'momentjs-rails', '~> 2.9',  :github => 'derekprior/momentjs-rails'

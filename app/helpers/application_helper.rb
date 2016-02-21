@@ -26,4 +26,18 @@ module ApplicationHelper
     content = "#{current_user.full_name_or_email} #{@action} <a href=orders/#{@el.id}>#{@el.title}</a>"
     Notification.create(msg_type: @msg_type, content: content, user_id: current_user.id, order_id: @el.id)
   end
+
+  def check_order_access(status)
+    if ['New', 'InProgress'].include?(status) && (current_user.person.has_role? :cook)
+      true
+    elsif ['Reservation', 'Done'].include?(status) && (current_user.person.has_role? :waiter)
+     true
+   elsif ['Payed', 'Closed'].include?(status) && (current_user.person.has_role? :manager)
+     true
+   elsif ['New', 'InProgress', 'Payed', 'Reservation', 'Done', 'Closed'].include?(status) && (current_user.person.has_role? :boss)
+     true
+   else
+     false
+   end
+  end
 end

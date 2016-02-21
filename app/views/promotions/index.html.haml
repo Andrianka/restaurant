@@ -1,0 +1,4 @@
+-if current_user.person.has_any_role? :boss, :manager
+  = render partial: "promotions/index/manage_promotions"
+-else
+  = render partial: "promotions/index/show_promotions"

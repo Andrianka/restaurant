@@ -1,6 +1,6 @@
 ActiveAdmin.register Product do
   permit_params :name, :description, :weight, :quantity, :category_id,
-    :price, :image, :is_active
+    :price, :image, :is_active, :unit
 
   index do
     selectable_column
@@ -8,6 +8,7 @@ ActiveAdmin.register Product do
     column :name
     column :description
     column :weight
+    column :unit
     column :price
     column :quantity
     column :is_active
@@ -22,6 +23,7 @@ ActiveAdmin.register Product do
   filter :name
   filter :category
   filter :weight
+  filter :unit
   filter :quantity
   filter :created_at
 
@@ -30,6 +32,7 @@ ActiveAdmin.register Product do
       f.input :name
       f.input :description
       f.input :weight
+      f.input :unit, :as => :select, :collection => Product::UnitType
       f.input :price
       f.input :quantity
       f.input :is_active, as: :radio

@@ -1,0 +1,45 @@
+.row
+  .col-md-12
+    = form_for(@promotion) do |f|
+      - if @promotion.errors.any?
+        #error_explanation
+          %h2
+            = pluralize(@promotion.errors.count, "error")
+            prohibited this order from being saved:
+          %ul
+            - @promotion.errors.full_messages.each do |message|
+              %li= message
+      %h4.center= "Add new promotion"
+      .form-horizontal
+        .form-group
+          = f.label :title, :class => 'col-md-3 control-label'
+          .col-md-7
+            = f.text_field :title, :class => 'form-control'
+        .form-group
+          = f.label :content, :class => 'col-md-3 control-label'
+          .col-md-7
+            = f.text_area :content, :class => 'form-control'
+        .form-group
+          = f.label :date_from, :class => 'col-md-3 control-label'
+          .col-md-7
+            = f.text_field :date_from, :readonly => "readonly", class: 'form-control'
+            %span.add-on
+              %i.icon-th
+        .form-group
+          = f.label :date_until, :class => 'col-md-3 control-label'
+          .col-md-7
+            = f.text_field :date_until, :readonly => "readonly", class: 'form-control'
+            %span.add-on
+              %i.icon-th
+        .form-group
+          = f.label :image, :class => 'col-md-3 control-label'
+          .col-md-7
+            =f.file_field :image
+        .form-group
+          .col-sm-offset-2.col-sm-10
+            .checkbox
+              %b
+                = f.check_box :active, :class => 'col-md-3'
+                = f.label :active, "Active", :class => 'col-md-1 control-label'
+        %div.margin-top-10
+          .center=f.button "Save", :class=>"btn btn-primary", :type=>'submit'

@@ -1,5 +1,9 @@
 class ProductsController < ApplicationController
 
+  def index
+    @products = Product.all
+  end
+
   def menu
     @categories = Category.order(order_number: :asc)
     @products = Product.all
@@ -23,7 +27,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to menu_path
+      redirect_to :back
     else
       render :new
     end
@@ -32,7 +36,7 @@ class ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
     if @product.update_attributes(product_params)
-      redirect_to menus_path
+      redirect_to :back
     else
       render :show
     end
@@ -49,6 +53,6 @@ class ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(:name, :description, :weight, :quantity,
-     :price)
+     :price, :image, :is_active, :unit)
   end
 end

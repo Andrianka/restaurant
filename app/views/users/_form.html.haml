@@ -1,43 +1,47 @@
 =form_for @user do |f|
-  %fieldset
-    .form-body
-      .form-group.row
-        %label.control-label.col-md-3 Email
-        .col-md-9
-          = f.text_field :email, :class => 'form-control'
-      .form-group.row
-        %label.control-label.col-md-3 Password
-        .col-md-9
-          = f.password_field :password, :class => 'form-control'
-      .form-group.row
-        %label.control-label.col-md-3 Password Confirmation
-        .col-md-9
-          = f.password_field :password_confirmation, :class => 'form-control'
-  %fieldset
-    =f.fields_for :person do |ff|
-      .form-body
-        .form-group.row
-          %label.control-label.col-md-3 First Name
-          .col-md-9
-            = ff.text_field :first_name, :class => 'form-control'
-      .form-body
-        .form-group.row
-          %label.control-label.col-md-3 Last Name
-          .col-md-9
-            = ff.text_field :last_name, :class => 'form-control'
-      .form-body
-        .form-group.row
-          %label.control-label.col-md-3 Telephone
-          .col-md-9
-            = ff.text_field :tel, :class => 'form-control'
-      .form-body
-        .form-group.row
-          %label.control-label.col-md-3 Role użytkowników
-          .col-md-9
-            =ff.select :roles, options_for_select(Person.valid_roles.collect{|s| [t("roles.#{s}"), s]}, @user.person.roles.to_a), {}, {:multiple=>'multiple', :class => 'multi-select'}
+
+  -if !@user.new_record?
+    %h3.center= "You edit #{@user.person.full_name}"
+  -else
+    %h3.center= "Add new user"
+  .form-horizontal
+    .form-group
+      %label.control-label.col-md-3 Email
+      .col-md-7
+        = f.text_field :email, :class => 'form-control'
+    .form-group
+      %label.control-label.col-md-3 Password
+      .col-md-7
+        = f.password_field :password, :class => 'form-control'
+    .form-group.row
+      %label.control-label.col-md-3 Password Confirmation
+      .col-md-7
+        = f.password_field :password_confirmation, :class => 'form-control'
+
+  =f.fields_for :person do |ff|
+    .form-horizontal
+      .form-group
+        %label.control-label.col-md-3 First Name
+        .col-md-7
+          = ff.text_field :first_name, :class => 'form-control'
+    .form-horizontal
+      .form-group
+        %label.control-label.col-md-3 Last Name
+        .col-md-7
+          = ff.text_field :last_name, :class => 'form-control'
+    .form-horizontal
+      .form-group
+        %label.control-label.col-md-3 Telephone
+        .col-md-7
+          = ff.text_field :tel, :class => 'form-control'
+    .form-horizontal
+      .form-group
+        %label.control-label.col-md-3 Role użytkowników
+        .col-md-7
+          =ff.select :roles, options_for_select(Person.valid_roles.collect{|s| [t("roles.#{s}"), s]}, @user.person.roles.to_a), {}, {:multiple=>'multiple', :class => 'form-control multi-select'}
 
   %div.margin-top-10
-    =f.button "Zapisz dane", :class=>"btn btn-success", :type=>'submit'
+    .center=f.button "Save", :class=>"btn btn-primary", :type=>'submit'
 
 :javascript
   $('.multi-select').multiSelect();

@@ -1,7 +1,11 @@
 .well
   .row
-    .col-xs-8
+    .col-xs-4
       %h4= product.name
+    .col-xs-1
+      = "#{product.weight} #{product.unit}"
+    .col-xs-3
+      =image_tag product.image.url(:medium)
     .col-xs-4
       = form_for order_item, remote: true do |f|
         %h4.text-right
@@ -18,3 +22,5 @@
         %h4.text-right
           Total Price:
           %span{:style => "color: green"}= number_to_currency order_item.total_price
+        =f.label :description, "Note"
+        %p=f.text_area :description

@@ -5,8 +5,12 @@
         - @order_item.errors.full_messages.each do |msg|
           %li= msg
   - if @order_items.size == 0
-    %p.center
-      There are no items in your shopping cart.  Please #{link_to "go back", root_path} and add some items to your cart.
+    %h4.center There are no items in your shopping cart.  Please #{link_to "go back", root_path} and add some items to your cart.
   - else
+    Select table
+    = select_tag :table,  options_from_collection_for_select(Table.all, :id, :nr), class: 'form-control select'
     - @order_items.each do |order_item|
       = render 'carts/cart_row', product: order_item.product, order_item: order_item, show_total: true
+    %h4.text-right{style: 'padding: 20px'}
+      = "Summary: #{number_to_currency @order.subtotal}"
+    .center= link_to "Order", order_completed_path, class: 'btn btn-lg btn-primary'

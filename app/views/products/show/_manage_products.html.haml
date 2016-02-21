@@ -1,0 +1,30 @@
+= form_for(@product) do |f|
+  .container_12
+    .grid_8
+      %div{style: 'margin-bottom: 30px'}
+        %h4.center= @product.category.name
+      =image_tag @product.image.url(:medium), class: 'img_inner fleft'
+      .extra_wrapper
+        %p.col1
+          %b Name
+          = f.text_field :name, value: @product.name, class: 'form-control'
+        %p.col1
+          %b Price
+          = f.number_field :price, value: @product.price, class: 'form-control'
+        %p.col1
+          %b Weight
+          = f.number_field :weight, value: @product.weight, class: 'form-control'
+        %p.col1
+          %b Quantity
+          = f.number_field :quantity, value: @product.quantity, min: 0, class: 'form-control'
+        %p.col1
+          %b Description
+          = f.text_area :description, value: @product.description, class: 'form-control'
+        %p.col1
+          %b Image
+          = f.file_field :image
+        %p.col1
+          %b Active
+          = f.check_box :is_active
+        %p.col1
+          = f.submit

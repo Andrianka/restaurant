@@ -7,11 +7,21 @@ Rails.application.routes.draw do
   get 'home' => 'pages#home', as: 'home'
   get 'contact' => 'pages#contact', as: 'contact'
   get 'about' => 'pages#about', as: 'about'
+  get 'manage' => 'pages#manage', as: 'manage'
+  get 'confirmed' => 'orders#confirmed', as: 'confirmed'
+  get 'completed' => 'orders#order_completed', as: 'order_completed'
+  get 'notifications' => 'notifications#index', as: 'notifications'
   get 'carts/show'
   get 'menu/' => 'products#menu', as: "menu"
   get 'profile' => 'users#profile', as: "profile"
-  put 'upload_avatar' => 'users#upload_avatar', as: 'upload_avatar'
-  resources :products, except: [:edit, :index]
+  patch 'upload_avatar' => 'users#upload_avatar', as: 'upload_avatar'
+
+  resources :promotions, except: [:edit] do
+    member do
+      get 'change_status' => 'promotions#change_status', as: 'change_status'
+    end
+  end
+  resources :products, except: [:edit]
   resources :categories, except: [:edit]
   put 'update_status/:id' => 'orders#update_status', as: 'update_status'
   resources :orders, except: [:destroy, :edit] do

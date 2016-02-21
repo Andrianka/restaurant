@@ -1,3 +1,2 @@
--@notifications.each do |n|
-  = n.content
-  = n.msg_type
+.container
+  = render partial: "notifications/table", locals: {notifications: @notifications}

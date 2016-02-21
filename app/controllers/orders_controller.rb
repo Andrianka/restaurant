@@ -22,6 +22,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @order_items = @order.order_items
   end
 
   def new
@@ -32,6 +33,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     if @order.save
       notification_order(msg: Notification::Success, action: "created order", el: @order)
+      current_user.points += @order.total/2 if @order.total > Point.active.order
       redirect_to order_path(@order)
     else
       notification_order(msg: Notification::Error, action: "created order", el: @order)
@@ -71,9 +73,20 @@ class OrdersController < ApplicationController
     @orders_items = @orders.order_items
   end
 
+  def order_completed
+    binding.pry
+    current_order.update_attributes(total: current_order.subtotal,
+    completed: true)
+    session[:order_id] = nil
+    redirect_to action: :confirmed
+  end
+
+  def confirmed
+  end
+
   private
 
   def order_params
-    params.require(:order).permit(:user_id, :status)
+    params.require(:order).permit(:user_id, :status, :table_id)
   end
 end

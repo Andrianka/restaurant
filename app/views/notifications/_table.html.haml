@@ -1,11 +1,13 @@
+%h4.center Notifications
 %table.table.table-hover
   %thead
     %tr
       %th #
       %th Person
+      %th Status
       %th Date
   %tbody
-    -order.notifications.each do |n|
+    -notifications.each do |n|
       %tr.orders
         %td{:scope => "row"}= n.content.html_safe
         %td= n.user.person.try(:full_name) || n.user.email

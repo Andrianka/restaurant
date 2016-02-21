@@ -14,4 +14,9 @@ class Person < ActiveRecord::Base
     "#{self.first_name} #{self.last_name}".rstrip
   end
 
+  def form_completed?(current_user)
+    current_user.person.first_name.present? &&
+    current_user.person.last_name.present? &&
+    current_user.person.tel.present? ? true : false
+  end
 end

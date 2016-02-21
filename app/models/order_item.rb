@@ -6,7 +6,7 @@ class OrderItem < ActiveRecord::Base
   validate :product_present
   validate :order_present
 
-  attr_accessor :category
+  attr_accessor :category, :description
   before_save :finalize
 
   def unit_price

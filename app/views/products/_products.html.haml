@@ -2,15 +2,15 @@
   .tab-content.gallery1
     .grid_12{style: 'margin-left: 120px'}
       -products.each do |p|
-        .grid_3
+        .grid_3.product_image
           =link_to "#", class: "gal" do
             =image_tag p.image.url(:medium), class: "col3"
             %span
           .col5
             = form_for @order_item.find_by(product_id: p.id) || current_order.order_items.new, remote: true do |f|
-              %span.col4{style: 'min-height: 40px'}
+              %div.col5{style: 'min-height: 40px'}
                 =link_to p.name, product_path(p.id), class: 'price_link'
-                %p= number_to_currency(p.price)
+              %p= number_to_currency(p.price)
               .col-lg-4.col-lg-offset-3= f.number_field :quantity, value: f.object.quantity, class: "form-control", style:'width: 54px', min: 0
               = f.hidden_field :product_id, value: p.id
               = f.submit "Add to Cart", class: "btn btn-primary"

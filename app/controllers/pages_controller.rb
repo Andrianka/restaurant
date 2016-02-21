@@ -7,4 +7,9 @@ class PagesController < ApplicationController
 
   def about
   end
+
+  def manage
+    @notifications = Notification.all
+    @users = User.all
+  end
 end

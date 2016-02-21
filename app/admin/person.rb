@@ -1,13 +1,16 @@
 ActiveAdmin.register Person do
   @person_params = [:first_name, :last_name, :tel, :avatar, roles: []]
-  user_params = [:email, :password, :password_confirmation]
-  permit_params @person_params, user_params
+  @user_params = [:email, :password, :password_confirmation, :points]
+  permit_params @person_params, @user_params
 
   index do
     selectable_column
     id_column
     column "Email", :user do |u|
       u.user.email if u.user
+    end
+    column :points, :user do |u|
+      u.user.points if u.user
     end
     column :current_sign_in_at, :user do |u|
       u.user.current_sign_in_at if u.user
@@ -30,6 +33,9 @@ ActiveAdmin.register Person do
     f.inputs "User Details" do
       f.fields_for :user do |b|
         b.input :email
+      end
+      f.fields_for :users do |b|
+        b.input :points
       end
     end
     f.inputs "Person Details" do

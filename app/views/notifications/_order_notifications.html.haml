@@ -7,6 +7,6 @@
           %span{"aria-hidden" => "true"} ×
         %h4#exampleModalLabel.modal-title Notifications
       .modal-body
-        = render partial: 'notifications/table', locals: {order: order}
+        = render partial: 'notifications/table', locals: {order: order, notifications: order.notifications}
       .modal-footer
         %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close

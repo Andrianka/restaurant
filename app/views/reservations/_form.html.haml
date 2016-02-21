@@ -1,14 +1,14 @@
 =form_for @reservation do |f|
-  %fieldset
+  .form-horizontal
     %h3.center= "Your reservation"
     .form-body
       .form-group.row
-        %label.control-label.col-md-offset-2.col-md-1 Choose A Table
-        .col-md-5
+        %label.control-label.col-md-3 Choose A Table
+        .col-md-7
           = f.select :table_id, options_for_select(Table.all.map{|t| ["#{t.nr} Miejsc: #{t.quantity}", t.id, {"data-table"=> t.nr}]}), {prompt: 'Select'}, {class: "form-control"}
       .form-group.row
-        %label.control-label.col-md-offset-2.col-md-1 Choose A Date
-        .col-md-5
+        %label.control-label.col-md-3 Choose A Date
+        .col-md-7
           .input-append.date.form_datetime
             = f.text_field :release_at, :readonly => "readonly", class: 'form-control'
             %span.add-on
@@ -17,8 +17,8 @@
         .form-group.row
           .center= "Fill this field or #{link_to 'Sign In', new_user_session_path, style: 'color: blue'}".html_safe
       .form-group.row
-        %label.control-label.col-md-offset-2.col-md-1 Your E-mail
-        .col-md-5
+        %label.control-label.col-md-3 Your E-mail
+        .col-md-7
           = f.text_field :email, :class => 'form-control'
   %div.margin-top-10
     .center=f.button "Submit", :class=>"btn btn-primary", :type=>'submit'

@@ -1,0 +1,16 @@
+.container
+  %h4.center You can manage all services
+  %pre
+    %p=link_to 'All notifications', notifications_path, class: 'btn btn-link'
+  %pre
+    %p=link_to 'All users', users_path, class: 'btn btn-link'
+    =link_to 'Add new user', new_user_path, class: 'btn btn-link'
+  %pre
+    %p=link_to 'All products', products_path, class: 'btn btn-link'
+    =link_to 'Add new product', new_product_path, class: 'btn btn-link'
+  %pre
+    %p=link_to 'All tables', tables_path, class: 'btn btn-link'
+    =link_to 'Add new table', new_table_path, class: 'btn btn-link'
+  %pre
+    %p=link_to 'All promotions', promotions_path, class: 'btn btn-link'
+    =link_to 'Add new promotions', new_promotion_path, class: 'btn btn-link'
